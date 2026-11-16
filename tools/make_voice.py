@@ -6,7 +6,7 @@ top of the repo. It needs Node (to read the clip list from the deck) and a Googl
 
     export GOOGLE_API_KEY=...
     python3 tools/make_voice.py              # every clip not yet in audio/ -> ./out/<name>.mp3
-    python3 tools/make_voice.py pair-otto    # only these clips
+    python3 tools/make_voice.py w-mittsu    # only these clips
     python3 tools/make_voice.py --all        # every clip, even ones already in audio/
     VOICE=ja-JP-Chirp3-HD-Kore python3 tools/make_voice.py
 

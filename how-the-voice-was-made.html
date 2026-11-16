@@ -34,8 +34,8 @@ pre code{background:none;border:0;padding:0;font-size:.85rem}
 <main>
 <nav><a href="how-it-works.html">← How it works</a><a href="./">The app</a><a href="../">All apps</a></nav>
 
-<h1>How I made the voice clips</h1>
-<p class="lead">Every sound in the app (the 46 basic kana, the ones with dakuten like <span class="kana">が</span>, and combination sounds like <span class="kana">きゃ</span>) is its own little clip. Here's how I made them with Google Cloud's Chirp 3 HD voices and a short Python script, plus the bits that went wrong.</p>
+<h1>How the voice clips are made</h1>
+<p class="lead">Every example word in the app (like <span class="kana">三つ</span> and <span class="kana">三月</span>) gets its own little clip, saying how it's read. They're made with Google Cloud's Chirp 3 HD voices and a short Python script, the same way as the clips in my earlier hiragana app. The notes below were written while making those, and they all still apply. Words are longer than single kana, so they give much less trouble.</p>
 
 <h2>Why not just use recordings?</h2>
 <p>I wanted one clean, consistent clip per sound. I went looking for recordings someone had already shared, but couldn't find anything clearly licensed for reuse that suited this:</p>
@@ -47,12 +47,12 @@ pre code{background:none;border:0;padding:0;font-size:.85rem}
 <p>So generating them with text-to-speech was the practical way to go.</p>
 
 <h2>Picking a service</h2>
-<p>I looked at OpenRouter's text-to-speech models (OpenAI's GPT-4o Mini TTS, Gemini TTS and Mistral's Voxtral), plus Google Cloud and Azure. I went with Google Cloud Text-to-Speech and its <b>Chirp 3 HD</b> Japanese voices. They sound natural, and the free monthly allowance covers this easily, since all of hiragana is only a few hundred characters of text.</p>
+<p>I looked at OpenRouter's text-to-speech models (OpenAI's GPT-4o Mini TTS, Gemini TTS and Mistral's Voxtral), plus Google Cloud and Azure. I went with Google Cloud Text-to-Speech and its <b>Chirp 3 HD</b> Japanese voices. They sound natural, and the free monthly allowance covers this easily, since all the example words together are only a few thousand characters of text.</p>
 
 <h2>Step 1: Set up Google Cloud</h2>
 <ol>
 <li>Sign up at <a href="https://console.cloud.google.com">console.cloud.google.com</a>.</li>
-<li>Make a project. I called mine <code>hiragana-tts</code>.</li>
+<li>Make a project. I called mine <code>kanji-tts</code>.</li>
 <li>Link a billing account to it. The API won't work without one, even though this job should cost next to nothing on the free tier.</li>
 <li>Search for <b>Cloud Text-to-Speech API</b> and click <b>Enable</b>.</li>
 </ol>
@@ -67,10 +67,10 @@ pre code{background:none;border:0;padding:0;font-size:.85rem}
 </ol>
 
 <h2>Step 3: The script</h2>
-<p>The script only uses Python's standard library. It has a table mapping romaji names to hiragana, sends each kana to Google, and saves what comes back as <code>out/&lt;romaji&gt;.mp3</code>.</p>
+<p>The script only uses Python's standard library. It gets a table of clip names and readings from the deck (<code>tools/clips.mjs</code>), sends each reading to Google in kana (so the voice says it the way the deck says it, never guessing at the kanji), and saves what comes back as <code>out/w-&lt;romaji&gt;.mp3</code>. Words that are read the same share one clip.</p>
 <p>The request looks like this:</p>
 <pre><code>body = json.dumps({
-    "input": {"text": "あ"},
+    "input": {"text": "みっつ"},
     "voice": {"languageCode": "ja-JP", "name": "ja-JP-Chirp3-HD-Aoede"},
     "audioConfig": {"audioEncoding": "MP3"},
 })
@@ -78,11 +78,13 @@ pre code{background:none;border:0;padding:0;font-size:.85rem}
 <p>You get JSON back with an <code>audioContent</code> field holding the audio as base64, which the script decodes and saves.</p>
 <p>The key comes from an environment variable, so it never ends up in the code:</p>
 <pre><code>export GOOGLE_API_KEY=your-key-here
-python3 generate.py a ka shi   # try a few first
-python3 generate.py            # then do the lot</code></pre>
+python3 tools/make_voice.py w-mittsu   # try one first
+python3 tools/make_voice.py            # then every clip that's missing
+python3 tools/tidy_voice.py            # trim and level them into audio/
+node tools/mark_clips.mjs              # tell the deck which words now have a clip</code></pre>
 <p>You can also set <code>VOICE</code> to try a different Chirp 3 HD voice, and <code>OUT_DIR</code> to save somewhere else.</p>
 
-<h2>Things that went wrong</h2>
+<h2>Things that went wrong (with the Hiragana clips)</h2>
 <p><b>A silent clip.</b> My first test gave me an almost silent <code>shi.mp3</code>: 0.34 seconds and 1.3 KB, when <code>ka</code> was 0.86 seconds. Running exactly the same request again gave a good one. Chirp doesn't give the same output every time, and really short single characters with no voiced sound in them can sometimes come back nearly empty.</p>
 <p>So now the script checks each result. If a clip is under 2000 bytes, it has up to three more goes, keeps the biggest one, and warns me if it's still short. The 2000-byte cut-off is just a rule of thumb from the first few clips, so now and then it'll retry one that was actually fine.</p>
 <p><b>One that just wouldn't work: <span class="kana">え</span>.</b> On the full run, <span class="kana">い</span>, <span class="kana">き</span> and <span class="kana">え</span> all came back near-silent. <span class="kana">い</span> and <span class="kana">き</span> were fine when I re-ran them, but <span class="kana">え</span> failed even after three retries, so it wasn't just bad luck. Giving the voice a tiny bit more context sorted it. The script has a <code>TEMPLATE</code> setting that wraps the kana before sending it, and sending <code>え。</code> (with a Japanese full stop) gave a good clip:</p>

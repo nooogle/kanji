@@ -10,7 +10,7 @@ clip in out/ (from tools/make_voice.py) this:
 Needs ffmpeg. Run it from the top of the repo, listen to the results, then rerun tools/make_sw.py:
 
     python3 tools/tidy_voice.py              # every clip in out/
-    python3 tools/tidy_voice.py pair-otto  # only these
+    python3 tools/tidy_voice.py w-mittsu  # only these
 """
 import glob, os, re, subprocess, sys
 
