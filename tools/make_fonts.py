@@ -22,8 +22,13 @@ OUT = 'vendor/fonts'
 OTHER_SCRIPTS = ('latin-ext', 'cyrillic', 'greek', 'greek-ext', 'vietnamese')
 
 
-def get(url):
-    return urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA})).read()
+def get(url, tries=4):
+    for attempt in range(tries):  # a stalled download is abandoned after 20 seconds and tried again
+        try:
+            return urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=20).read()
+        except OSError:
+            if attempt == tries - 1:
+                raise
 
 
 def ranges(face):
