@@ -56,5 +56,5 @@ CONF.forEach(g=>{const c=[...g].filter(x=>BY[x]);c.forEach(a=>c.forEach(b=>link(
 export const mixKey=(a,b)=>BY[a]&&BY[b]?[a,b].sort().join('|'):null;
 export const mixParts=key=>key.split('|');
 
-/** Card ids in a saved progress object that aren't in this deck, such as a Hiragana drill backup's. */
+/** Card ids in a saved progress object that aren't in this deck, such as another drill's backup. */
 export const unknownCards=state=>Object.keys((state&&state.cards)||{}).filter(id=>!entryOf(id));
