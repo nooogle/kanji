@@ -2,10 +2,13 @@
 // Also makes sure sounds never overlap and that nothing moves on before a sound has finished.
 
 import {S} from './storage.js';
-import {BY,hasSound} from './deck.js';
 
-// Voice clips: Google Cloud Text-to-Speech, one MP3 per entry in audio/, named in the deck (BY[k].a; see tools/clips.mjs)
-const AUDIO_FILE=k=>{const it=BY[k];return it&&it.a?'audio/'+it.a+'.mp3':null;};
+// Voice clips: Google Cloud Text-to-Speech, one MP3 per example word in audio/, named in the deck (word.a; see tools/clips.mjs)
+const clipFile=word=>word&&word.a?'audio/'+word.a+'.mp3':null;
+/** Whether a word has a voice clip made for it. */
+export const hasClip=word=>!!(word&&word.a);
+// A moment of silence, played muted on the first tap so iOS lets later sounds play without one
+const SILENCE='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
 export const hasTTS='speechSynthesis' in window;
 export const canSpeak=true;
 const player=new Audio();player.preload='auto';
@@ -14,7 +17,7 @@ let audioReady=false;
 function unlockAudio(){
   // iOS only lets audio play without a tap once the player has been started from a tap
   if(audioReady)return;audioReady=true;
-  try{player.src=AUDIO_FILE('あ');player.muted=true;
+  try{player.src=SILENCE;player.muted=true;
     // only stop the silent unlock clip, never a real sound that started on the same tap
     const p=player.play();if(p&&p.then)p.then(()=>{if(player.muted){player.pause();player.muted=false;}},()=>{player.muted=false;audioReady=false;});else player.muted=false;}catch(e){audioReady=false;}
 }
@@ -43,14 +46,14 @@ let soundDone=Promise.resolve(),endSound=null;
 /** A promise that settles when the current sound (if any) has finished, plus a short gap. */
 export function whenSoundDone(){return soundDone;}
 
-/** Play a kana once the previous sound has finished, but only if stillHere() says the card is still showing. */
-export function autoSpeak(k,stillHere=()=>true){
-  soundDone.then(()=>{if(stillHere())speak(k);});
+/** Play a word once the previous sound has finished, but only if stillHere() says the card is still showing. */
+export function autoSpeak(word,stillHere=()=>true){
+  soundDone.then(()=>{if(stillHere())speakWord(word);});
 }
 
-/** Play a kana straight away (or text, with its clip), and return a promise that settles when it has finished.
- *  If the clip won't play (say it hasn't been made yet), the phone's own voice says it instead. */
-export function speak(text,clip=AUDIO_FILE(text)){
+/** Play text straight away with its clip (a file name like audio/x.mp3, or null), and return a promise that settles
+ *  when it has finished. If the clip won't play (say it hasn't been made yet), the phone's own voice says the text instead. */
+export function speak(text,clip){
   if(endSound)endSound(); // a new sound replaces one that's still going
   let settled=false,resolve;
   soundDone=new Promise(r=>{resolve=r;});
@@ -61,10 +64,9 @@ export function speak(text,clip=AUDIO_FILE(text)){
     try{player.onended=finish;player.onerror=()=>{if(!speakTTS(text,finish))finish();};player.muted=false;player.src=clip;player.currentTime=0;
       const p=player.play();if(p&&p.catch)p.catch(finish);return soundDone;}catch(e){}
   }
-  if(BY[text]&&!hasSound(text)){finish();return soundDone;} // っ: nothing to say on its own
   if(!speakTTS(text,finish))finish();
   return soundDone;
 }
 
-/** Play a made-up word from a っ pair (かった, かた) by its clip name. */
-export const speakWord=(text,name)=>speak(text,'audio/'+name+'.mp3');
+/** Say an example word: its voice clip, or the phone's voice reading its kana if there is no clip. */
+export const speakWord=word=>speak(word.r,clipFile(word));

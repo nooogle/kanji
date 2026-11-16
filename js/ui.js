@@ -1,9 +1,9 @@
 // Small shared pieces for building screens: the app box, icons, toasts, and the text and colour helpers.
 
 import {S,ymd} from './storage.js';
-import {TYPES,hasSound} from './deck.js';
+import {TYPES} from './deck.js';
 import {activeCards,cardScore,isManual,manualTypes} from './scheduler.js';
-import {canSpeak} from './sound.js';
+import {canSpeak,hasClip} from './sound.js';
 
 /** The one box on the page that every screen is drawn into. */
 export const app=document.getElementById('app');
@@ -16,12 +16,13 @@ export const PLAY_ICON=SPK_ICON.replace('width="22" height="22"','width="56" hei
 // "Don't know" counts as a miss, so the card comes back soon instead of being rewarded for a lucky guess
 export const DK='<button class="dk" data-act="answer" data-k="?">Don\'t know</button>';
 
-export function spkBtn(k){return canSpeak&&hasSound(k)?`<button class="spk" data-act="speak" data-k="${k}" aria-label="Play sound">${SPK_ICON}</button>`:'';}
+/** A speaker button for an example word, shown only when the word has a voice clip. */
+export function spkBtn(word){return canSpeak&&hasClip(word)?`<button class="spk" data-act="speakword" data-w="${word.w}" aria-label="Play ${word.r}">${SPK_ICON}</button>`:'';}
 export function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),1800);}
 
-/** Colour level for a kana on the chart: -1 not added, 1 learning, 2 shaky, 3 good, 4 solid. */
+/** Colour level for a kanji on the chart: -1 not added, 1 learning, 2 shaky, 3 good, 4 solid. */
 export function level(it){
-  if(!S.rows.includes(it.row))return -1;
+  if(!S.rows.includes(it.set))return -1;
   // Score only the card types being practised (in manual mode, the ticked ones), scaled so "solid" is still reachable
   const ts=isManual()?manualTypes():S.settings.write===false?['read','recall']:TYPES;
   const avg=ts.reduce((a,t)=>a+cardScore(it.k+'|'+t),0)/ts.length;
