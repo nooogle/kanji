@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How it works · Kanji drill</title>
-<meta name="description" content="How the hiragana drill works: the questions, the spaced repetition, your data and putting it on your phone.">
+<meta name="description" content="How the Kanji drill works: what you are asked, the spaced repetition, your data and putting it on your phone.">
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
 <style>
-:root{--paper:#EEF0EA;--card:#FAFBF7;--ink:#1C2333;--muted:#5F6674;--line:#CDD2C6;--accent:#27407A;
+:root{--paper:#EEF0EA;--card:#FAFBF7;--ink:#1C2333;--muted:#5F6674;--line:#CDD2C6;--accent:#165C60;
   --l1:#F2C7BC;--l2:#F3DDA6;--l3:#C9E0B1;--l4:#8CC49C;
   --ui:"Zen Maru Gothic","Hiragino Maru Gothic ProN",system-ui,-apple-system,"Segoe UI",sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#12161E;--card:#1B212C;--ink:#E6E9EF;--muted:#9AA1AE;--line:#2E3644;--accent:#93ABEA;--l1:#6A3328;--l2:#665324;--l3:#3D5A30;--l4:#2F6E48}}
-:root[data-theme="dark"]{--paper:#12161E;--card:#1B212C;--ink:#E6E9EF;--muted:#9AA1AE;--line:#2E3644;--accent:#93ABEA;--l1:#6A3328;--l2:#665324;--l3:#3D5A30;--l4:#2F6E48}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#12161E;--card:#1B212C;--ink:#E6E9EF;--muted:#9AA1AE;--line:#2E3644;--accent:#7CC4C8;--l1:#6A3328;--l2:#665324;--l3:#3D5A30;--l4:#2F6E48}}
+:root[data-theme="dark"]{--paper:#12161E;--card:#1B212C;--ink:#E6E9EF;--muted:#9AA1AE;--line:#2E3644;--accent:#7CC4C8;--l1:#6A3328;--l2:#665324;--l3:#3D5A30;--l4:#2F6E48}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ui);font-weight:500;line-height:1.65;-webkit-text-size-adjust:100%}
 main{max-width:640px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(48px + env(safe-area-inset-bottom,0px))}
@@ -36,40 +36,38 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:v
 <main>
 <nav><a href="./">← Back to the app</a><a href="../">All apps</a></nav>
 
-<h1>How the hiragana drill works</h1>
-<p class="lead">It's a little practice app for learning hiragana. I built it to help my son get through his Japanese course, but it works for anyone who's learning. It runs in your phone's browser, there's no account to make, and nothing you do leaves your phone.</p>
+<h1>How the Kanji drill works</h1>
+<p class="lead">It's a little practice app for learning the 200 kanji of the UK GCSE in Japanese, and the words that go with them. I built it to help with the exam, but it works for anyone learning these characters. It runs in your phone's browser, there's no account to make, and nothing you do leaves your phone.</p>
+<div class="note"><b>Not an official app.</b> This isn't made or checked by Pearson or any exam board. The 200 kanji are the ones in Pearson's published list for the Edexcel GCSE (9–1) in Japanese (Appendix 4 of the specification, Issue 5). The meanings, readings and example words were drafted for this app, so if you spot a mistake, please tell me.</div>
+
+<h2>What is a kanji?</h2>
+<p>Kanji are the characters Japanese borrowed from Chinese. Each one stands for an idea: <span class="kana">山</span> is mountain, <span class="kana">三</span> is three, <span class="kana">日</span> is sun or day. Japanese writing mixes kanji with hiragana and katakana, with the kanji carrying the meaning and the kana filling in the grammar.</p>
+<p>A kanji isn't always a word on its own, and it usually has more than one way to be read. <span class="kana">三</span> is <i>san</i> in <span class="kana">三月</span> (March) but <i>mit-</i> in <span class="kana">三つ</span> (three things). So this app teaches what each kanji means first, and teaches how it's read through real words, never on its own.</p>
 
 <h2>Getting going</h2>
-<p>When you open it you'll see the hiragana chart. Each row (<span class="kana">あいうえお</span>, <span class="kana">かきくけこ</span> and so on) stays greyed out until you add it. Tap a row and you get two choices:</p>
+<p>When you open it you'll see the chart. It's split into the two GCSE tiers, <b>Foundation</b> (76 kanji) and <b>Higher</b> (124 more), and each tier is made of small sets of about 8 to 12 kanji, starting with the numbers. A set stays greyed out until you add it. Tap one and you get two choices:</p>
 <ul>
-<li><b>I already know these.</b> You get a quick check, one card per kana. Anything you get right starts a bit further along, and anything you miss starts from scratch.</li>
-<li><b>They're new to me.</b> Each one gets a little intro card first (the kana, its romaji and its sound) before you're tested on it.</li>
+<li><b>I already know these.</b> You get a quick check, one card per kanji: what does it mean? Anything you get right starts a bit further along, and anything you miss starts from scratch.</li>
+<li><b>They're new to me.</b> Each one gets a little intro card first (the kanji, its meaning, how it's read and a few words that use it) before you're tested on it.</li>
 </ul>
-<p>Add rows as your course gets to them. You can add the lot on day one, but you'll get a mountain of reviews if you do.</p>
-<p>The chart has four parts:</p>
-<ul>
-<li><b>Basic hiragana</b>, the 46 everyday ones.</li>
-<li><b>With dakuten</b>: the ones with two little marks or a little circle, like <span class="kana">が</span> and <span class="kana">ぱ</span>.</li>
-<li><b>Combinations</b>: a kana with a small <span class="kana">ゃ</span>, <span class="kana">ゅ</span> or <span class="kana">ょ</span>, said as one sound, like <span class="kana">きゃ</span> (kya).</li>
-<li><b>Small <span class="kana">っ</span></b>, which doubles the next sound: <span class="kana">かった</span> is katta, not kata.</li>
-</ul>
+<p>Add sets as you get to them. You can add the lot on day one, but you'll get a mountain of reviews if you do.</p>
 
 <h2>The questions</h2>
 <ul>
-<li><b>What sound is this?</b> You see a kana and pick the romaji.</li>
-<li><b>Which hiragana is this?</b> You see the romaji and pick the kana. About half of these are listening questions instead, where you only hear the sound. If you're somewhere you can't play sound, tap "Can't use sound right now".</li>
-<li><b>Write this one.</b> Draw it with your finger, tap Check, and the right answer is drawn in red over your writing, one numbered stroke at a time, so you can compare the two. Tap the box to watch it again. You mark this one yourself, so be honest with yourself. If you can't remember it at all, tap <b>Don't know</b> instead of Check: you'll see the answer drawn out, and it counts as a miss. <b>Got it</b> moves straight on. After <b>Not quite</b> or <b>Don't know</b>, you'll see the hint, and <b>Practise</b> takes you through it in four steps, the same for every kana. <b>Watch:</b> the strokes draw themselves in order while you hear the sound (<b>Replay</b> shows it again). <b>Trace:</b> draw over a faint red copy. <b>Copy:</b> write it in an empty box, with the numbered strokes in a small box beside it. <b>Recall:</b> write it with only the sound and romaji to go on, then tap <b>Done</b> to see the answer drawn beside yours. Tap <b>Again</b> to go through it once more, or <b>Next</b> to move on. If you'd rather have the old practice sheet, with a little box for stroke 1, then strokes 1 and 2, and so on, choose <b>Classic</b> under <b>Settings → Practising writing</b>. Practising never changes your mark. If you only want reading practice, you can switch writing off in Settings. For a combination, like <span class="kana">きゃ</span>, the box is twice as wide, with a half for each character, and the second one is written small.</li>
-<li><b>Small <span class="kana">っ</span></b> doesn't have a sound of its own, so its questions use pairs of words, like <span class="kana">かった</span> and <span class="kana">かた</span>. You see one and pick how it's said (katta or kata), or hear one and pick which you heard. They're all real words, but you don't need to know what they mean: it's practice at hearing and reading the difference.</li>
+<li><b>What does this mean?</b> You see a kanji and pick its meaning.</li>
+<li><b>Which kanji is this?</b> You see the meaning and pick the kanji from four that look alike.</li>
+<li><b>Write this one.</b> You see the meaning, draw the kanji with your finger and tap Check. The right answer is drawn in red over your writing, one numbered stroke at a time, so you can compare the two. You mark this one yourself, so be honest with yourself. If you miss it, <b>Practise</b> walks you through it: watch, trace, copy, then from memory.</li>
+<li><b>How is this read?</b> This is a word, like <span class="kana">三月</span>, and you pick how it's read from four choices. For words that have a voice recording, about half of these are listening questions instead: you hear the word and pick which written word it was. If you're somewhere you can't play sound, tap "Can't use sound right now".</li>
 </ul>
-<p>You start with reading. Picking the kana from romaji unlocks once you can read it, and writing unlocks after that.</p>
-<p>That's the <b>Automatic</b> setting. If you'd rather choose for yourself, go to <b>Settings → What to practise</b>, pick <b>Manual</b> and tick the kinds of question you want: writing, romaji to hiragana, hiragana to romaji, or any mix. Nothing has to unlock first, so ticking just <b>Writing</b> gets you straight into writing every kana in your rows, which is handy if your test is writing hiragana from romaji. The spacing works just the same, and you can switch back to Automatic whenever you like without losing anything.</p>
-<p>The wrong answers aren't random, either. They're the ones people really do mix up, like <span class="kana">ぬ</span> and <span class="kana">め</span>, or <span class="kana">は</span> and <span class="kana">ほ</span>. Everything's shuffled too, so you can't coast along just knowing the order of the chart.</p>
+<p>You start with meanings. Picking the kanji from its meaning unlocks once you know what it means, and writing unlocks after that. Words that use a kanji start once you know what the kanji means, and only once every kanji in the word is in a set you've added.</p>
+<p>That's the <b>Automatic</b> setting. If you'd rather choose for yourself, go to <b>Settings → What to practise</b>, pick <b>Manual</b> and tick the kinds of question you want. Nothing has to unlock first.</p>
+<p>The wrong answers aren't random, either. They're the ones people really do mix up, like <span class="kana">日</span> and <span class="kana">目</span>, or <span class="kana">人</span> and <span class="kana">入</span>. Everything's shuffled too, so you can't coast.</p>
+<p>After a word question the app shows you the reading and meaning, and when you get one wrong it nudges you to say the word out loud. The app can't hear you, so that part is up to you, but speaking is a quarter of the GCSE, so it's worth doing.</p>
 
 <h2>Memory hints</h2>
-<p>Every kana comes with a little hint to help it stick, like <span class="kana">ね</span> being a cat (neko) with its tail curled round, or <span class="kana">ぬ</span> being noodles with a loop at the end. You'll see the hint when a kana is new, and again whenever you get one wrong. If you mixed up two kana, you get the hints for both, so you can see what tells them apart.</p>
-<p>The hints that work best are the ones you make up yourself, however daft. Tap <b>Write your own hint</b> under any hint, or tap a row on the chart and then a kana, and type whatever helps you remember it. Your own hints show first (with a green edge), they're saved with your progress, and you can always go back to the suggested one.</p>
+<p>Hints are little stories that help a kanji stick. The app doesn't come with any ready-made ones yet, but you can write your own: tap a set on the chart and then a kanji, or tap <b>Write your own hint</b> under any card, and type whatever helps you remember it, however daft. Your hints show up when that kanji is new, and again when you get it wrong.</p>
 
-<div class="note"><b>Please don't guess.</b> If you're not sure, tap <b>Don't know</b>. A lucky guess tells the app you know something you don't, and it'll leave that kana alone for days. "Don't know" brings it back a few cards later and keeps it coming round until it sticks.</div>
+<div class="note"><b>Please don't guess.</b> If you're not sure, tap <b>Don't know</b>. A lucky guess tells the app you know something you don't, and it'll leave that card alone for days. "Don't know" brings it back a few cards later and keeps it coming round until it sticks.</div>
 
 <h2>How the spaced repetition works</h2>
 <p>The idea is pretty simple. You remember things best if you go over them just as you're about to forget them. Too soon is a waste of your time, and too late means you've already lost it.</p>
@@ -81,48 +79,50 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:v
 <li>If you answer quickly, it counts as easy and the gap stretches further. If you answer slowly, it counts as hard and the gap grows less.</li>
 <li>No gap is ever longer than 60 days. Picking from four answers is easier than remembering from nothing, so I didn't want it getting overconfident.</li>
 </ul>
-<p>So the ones you always know drift away and only pop up now and then, and most of your time goes on the ones you find tricky. That's the whole point really.</p>
+<p>So the ones you always know drift away and only pop up now and then, and most of your time goes on the ones you find tricky.</p>
 
 <h2>The buttons on the home screen</h2>
 <ul>
 <li><b>Start review</b> does everything that's due right now, up to 30 cards at a time, so sessions stay short.</li>
 <li><b>Practise weakest</b> gives you extra goes at your shakiest cards.</li>
-<li><b>Run through everything</b> gives you one card for every kana you've started, all shuffled. In Manual it's every kana in your rows, started or not. It's good for a quick check before a test.</li>
+<li><b>Run through everything</b> gives you one card for every kanji and word you've started, all shuffled. In Manual it's every one in your sets, started or not. It's good for a quick check before a test.</li>
 </ul>
 <p>Practising and running through don't mess up your schedule. Getting one right there doesn't push it further away, but getting one wrong does bring it back sooner.</p>
 <p>Two or three short sessions a day work much better than one long one. Five minutes on the bus is plenty.</p>
 
 <h2>What the colours mean</h2>
-<p>Each kana on the chart is coloured by how well you know it across all the question types:</p>
+<p>Each kanji on the chart is coloured by how well you know it across its meaning, recall and writing cards:</p>
 <ul class="colours">
 <li><i style="background:var(--l1)"></i><span><b>Learning</b>: still new, or you've just got it wrong.</span></li>
 <li><i style="background:var(--l2)"></i><span><b>Shaky</b>: getting there, but it'll need checking again soon.</span></li>
 <li><i style="background:var(--l3)"></i><span><b>Good</b>: you mostly know it.</span></li>
 <li><i style="background:var(--l4)"></i><span><b>Solid</b>: you know it well enough that it won't need checking for a couple of weeks or more.</span></li>
 </ul>
+<p>Words aren't on the chart. The Progress screen has a Words section instead.</p>
 
 <h2>Progress</h2>
-<p>Tap <b>Progress</b> at the top for a report on the last week or two: how many days you've practised, how accurate you are on each kind of question, which kana you miss most and which pairs you keep mixing up. <b>Share this report</b> sends it as a message, which is handy if a parent wants to keep an eye on things.</p>
+<p>Tap <b>Progress</b> at the top for a report on the last week or two: how many days you've practised, how accurate you are on each kind of question, which kanji and words you miss most and which pairs you keep mixing up. <b>Share this report</b> sends it as a message, for a teacher or a parent, say.</p>
 
 <h2>Where your progress is kept</h2>
 <p>Everything is saved on your phone, inside the browser. There's no account and nothing gets sent anywhere. That does mean a few things:</p>
 <ul>
 <li>Everyone using it on their own phone has their own progress.</li>
 <li>If you change phone or browser, go to <b>Settings → Copy backup</b> on the old one, then paste it into <b>Restore from backup</b> on the new one.</li>
+<li>Backups only work between Kanji drills. A backup from the Hiragana or Katakana drill is turned away.</li>
 <li>iPhones can clear data for websites you haven't used in a long while. Adding it to your home screen (see below) mostly stops that, and a backup now and then doesn't hurt.</li>
 </ul>
 
 <h2>Putting it on your phone</h2>
 <p>You can install it so it has its own icon and opens full screen like a normal app. After the first visit it works with no signal at all.</p>
 <ul>
-<li><b>iPhone:</b> open it in Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>, and leave <b>Open as Web App</b> switched on. One catch: on an iPhone the home screen app keeps its own progress, separate from Safari. If you've already been practising in Safari, use <b>Settings → Copy backup</b> there, then <b>Restore from backup</b> in the home screen app. After that, just use the icon.</li>
+<li><b>iPhone:</b> open it in Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>, and leave <b>Open as Web App</b> switched on. One catch: on an iPhone the home screen app keeps its own progress, separate from Safari. If you've already been practising in Safari, copy a backup first and restore it in the home screen app.</li>
 <li><b>Android:</b> open it in Chrome, tap the <b>⋮</b> menu, then <b>Install app</b> (or <b>Add to home screen</b>). On Android your progress is shared with Chrome, so nothing needs moving.</li>
 <li><b>On a computer:</b> it works in any browser. In Chrome or Edge you can install it too, using the little install icon at the end of the address bar. On a Mac in Safari, use <b>File → Add to Dock</b>.</li>
 </ul>
 <p>When there's an update it downloads in the background. Close the app and open it again (sometimes twice) and you'll have it.</p>
 
 <h2>Using a keyboard</h2>
-<p>On a computer you can do the whole thing from the keyboard, and the buttons show which key to press:</p>
+<p>On a computer you can do the whole thing from the keyboard:</p>
 <ul>
 <li><b>1</b> to <b>4</b> pick an answer, and <b>0</b> is Don't know.</li>
 <li><b>Enter</b> or <b>Space</b> moves on: Next, Got it, Check, Next step, Show me, or Start review on the home screen.</li>
@@ -132,15 +132,16 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:v
 
 <h2>Sound</h2>
 <p>If you can't hear anything, check the silent switch on the side of your iPhone first. That catches most people out.</p>
-<p>The voice clips were made with Google's text-to-speech, one clip for each sound. If you're curious, here's <a href="how-the-voice-was-made.html">how I made the voice clips</a>. If you'd rather use your phone's own voice, you can switch in Settings.</p>
+<p>The voice clips were made with Google's text-to-speech, one clip for each example word, and they're being added set by set. Words that don't have a clip yet show up as reading questions only. If you're curious, here's <a href="how-the-voice-was-made.html">how the voice clips are made</a>. If you'd rather use your phone's own voice, you can switch in Settings.</p>
 
 <h2>Feedback and ideas</h2>
-<p>This app is new and I'm improving it all the time, so I'd love to hear what you think. Spotted a mistake? Got a memory hint that works better than mine? Tap <b>Settings → Send feedback</b>. It opens your email app with a message ready to go, and it can include any hints you've written yourself, so good ones can make it into the app for everyone.</p>
+<p>This app is new and I'm improving it all the time, so I'd love to hear what you think. Spotted a wrong meaning or reading? Got a memory hint that works well? Tap <b>Settings → Send feedback</b>. It opens your email app with a message ready to go, and it can include your own hints if you like.</p>
 <p>The first time you meet each kind of card, a little tip pops up to explain it. If you want to see them again, tap <b>Settings → Show tips again</b>. The welcome screens are there too.</p>
 
 <footer>
 <p><b>Thanks to</b></p>
 <ul>
+<li>Pearson, whose published GCSE specification lists the 200 kanji.</li>
 <li><a href="https://github.com/open-spaced-repetition/ts-fsrs">ts-fsrs</a> from the Open Spaced Repetition project, for the scheduling (MIT licence).</li>
 <li><a href="https://kanjivg.tagaini.net/">KanjiVG</a> by Ulrich Apel, for the stroke order (CC BY-SA 3.0).</li>
 <li>Google Cloud Text-to-Speech, for the voice (the Chirp 3 HD "Aoede" voice).</li>

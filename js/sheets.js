@@ -1,8 +1,8 @@
-// Pop-up panels that slide up from the bottom: row options, Settings and Send feedback.
+// Pop-up panels that slide up from the bottom: set options, Settings and Send feedback.
 // (The hint editor is also a sheet, and lives in hints.js.)
 
 import {S} from './storage.js';
-import {ROWMAP,BY,KANA} from './deck.js';
+import {SETMAP,BY,KANJI} from './deck.js';
 import {hasTTS} from './sound.js';
 import {isManual,manualTypes} from './scheduler.js';
 
@@ -15,27 +15,27 @@ export function openSheet(html){
 }
 export function closeSheet(){const s=document.getElementById('scrim');if(s)s.remove();}
 
-export function rowSheet(id){
-  const row=ROWMAP[id],on=S.rows.includes(id);
+export function setSheet(id){
+  const set=SETMAP[id],on=S.rows.includes(id),ks=[...set.k];
+  const tier=set.tier==='foundation'?'Foundation':'Higher';
   if(on){
-    openSheet(`<h2>The ${row.k[0]} row</h2>
-      <p class="sub" style="margin-bottom:6px">Tap a kana to see or change its hint.</p>
-      <div class="hintkeys">${row.k.map(k=>`<button class="${S.hints[k]?'mine':''}" data-act="edithint" data-k="${k}" aria-label="Hint for ${BY[k].r}">${k}</button>`).join('')}</div>
-      <button class="primary" data-act="rowpractice" data-row="${id}">Practise this row</button>
-      <button class="secondary" data-act="rowremove" data-row="${id}">Remove from my chart</button>
+    openSheet(`<h2>${set.name}</h2>
+      <p class="sub" style="margin-bottom:6px">${tier} tier. Tap a kanji to see or change its hint.</p>
+      <div class="hintkeys">${ks.map(k=>`<button class="${S.hints[k]?'mine':''}" data-act="edithint" data-k="${k}" aria-label="Hint for ${BY[k].m}">${k}</button>`).join('')}</div>
+      <button class="primary" data-act="setpractice" data-set="${id}">Practise this set</button>
+      <button class="secondary" data-act="setremove" data-set="${id}">Remove from my chart</button>
       <button class="secondary" data-act="close">Cancel</button>`);
     return;
   }
-  const baseNote=row.base&&!S.rows.includes(row.base)?`<p class="sub">Tip: these build on the ${ROWMAP[row.base].k[0]} row, which isn't in your chart yet.</p>`:'';
-  openSheet(`<h2>Add the ${row.k[0]} row</h2><p class="preview kana">${row.k.join(' ')}</p>${baseNote}
-    <button class="primary" data-act="rowadd" data-row="${id}">I already know these</button>
-    <p class="sub" style="margin-top:8px">You'll get a quick check. Any you miss start from the beginning.</p>
-    <button class="secondary" data-act="rownew" data-row="${id}">They're new to me</button>
+  openSheet(`<h2>Add: ${set.name}</h2><p class="sub">${tier} tier, ${ks.length} kanji</p><p class="preview kana">${ks.join(' ')}</p>
+    <button class="primary" data-act="setadd" data-set="${id}">I already know these</button>
+    <p class="sub" style="margin-top:8px">You'll get a quick check on what each one means. Any you miss start from the beginning.</p>
+    <button class="secondary" data-act="setnew" data-set="${id}">They're new to me</button>
     <button class="secondary" data-act="close">Cancel</button>`);
 }
 
 // The card types offered in manual mode, in the order they're listed
-const MANUAL_TYPES=[['write','Writing'],['recall','Romaji or sound → hiragana'],['read','Hiragana → romaji']];
+const MANUAL_TYPES=[['read','Kanji → meaning'],['recall','Meaning → kanji'],['write','Writing'],['word','Word reading and listening']];
 
 export function settingsSheet(){
   const manual=isManual(),types=manualTypes();
@@ -47,12 +47,12 @@ export function settingsSheet(){
     <h3>What to practise</h3>
     <label class="toggle"><input type="radio" name="pmode" value="auto" ${manual?'':'checked'}>Automatic</label>
     <div id="pauto" ${manual?'hidden':''}>
-      <p class="sub">Reading first, then picking the kana from romaji, then writing, each unlocking as you get the one before.</p>
+      <p class="sub">Meanings first, then picking the kanji from its meaning, then writing, each unlocking as you get the one before. Words with a kanji in them start once you know its meaning.</p>
       <label class="toggle"><input type="checkbox" id="wrt" ${S.settings.write!==false?'checked':''}>Include writing practice</label>
     </div>
     <label class="toggle"><input type="radio" name="pmode" value="manual" ${manual?'checked':''}>Manual</label>
     <div id="pmanual" ${manual?'':'hidden'}>
-      <p class="sub">Only the ones you tick, for every kana in your chosen rows.</p>
+      <p class="sub">Only the ones you tick, for every kanji and word in your chosen sets.</p>
       ${MANUAL_TYPES.map(([t,name])=>`<label class="toggle"><input type="checkbox" name="ptype" value="${t}" ${types.includes(t)?'checked':''}>${name}</label>`).join('')}
     </div>
     <h3>Practising writing</h3>
@@ -65,7 +65,7 @@ export function settingsSheet(){
       <option value="rec" ${S.settings.voice!=='phone'?'selected':''}>Recorded voice (clearest)</option>
       ${hasTTS?`<option value="phone" ${S.settings.voice==='phone'?'selected':''}>This phone's voice</option>`:''}
     </select></label>
-    <button class="secondary" data-act="testvoice">Test: は へ を ん</button>
+    <button class="secondary" data-act="testvoice">Test the voice</button>
     <p class="sub" style="font-size:.8rem;margin-top:10px">Recorded voice: Google Cloud Text-to-Speech (Chirp 3 HD, Aoede). <a href="how-the-voice-was-made.html">How the clips were made</a></p>
     <h3>Backup</h3>
     <p class="sub">Progress is stored on this phone only. Copy a backup now and then, and paste it here to restore it.</p>
@@ -82,7 +82,7 @@ export function settingsSheet(){
 const FEEDBACK_TO='jon@carpediemsystems.co.uk';
 
 function feedbackBody(withHints,version){
-  const mine=KANA.filter(x=>S.hints[x.k]).map(x=>`${x.k} (${x.r}): ${S.hints[x.k]}`);
+  const mine=KANJI.filter(x=>S.hints[x.k]).map(x=>`${x.k} (${x.m}): ${S.hints[x.k]}`);
   const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
   const ua=navigator.userAgent,device=/iPhone|iPad|iPod/.test(ua)?'iPhone/iPad':/Android/.test(ua)?'Android':'Computer';
   let body='\n\n\n';

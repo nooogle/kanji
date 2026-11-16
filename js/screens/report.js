@@ -1,12 +1,16 @@
 // The Progress screen, and the plain-text version used by "Share this report".
 
 import {S,ymd} from '../storage.js';
-import {KANA,BY,mixKey,mixParts} from '../deck.js';
+import {KANJI,WORDS,BY,WORD_BY,mixKey,mixParts} from '../deck.js';
+import {cardScore} from '../scheduler.js';
 import {app,level,streak,toast} from '../ui.js';
 import {endSession} from './session.js';
 
-const TYPE_NAME={read:'Reading (kana to sound)',recall:'Picking the kana from romaji',listen:'Listening',write:'Writing'};
-const kindOf=l=>{const t=l.id.split('|')[1];return t==='recall'&&l.v==='listen'?'listen':t;};
+const TYPE_NAME={read:'Kanji to meaning',recall:'Meaning to kanji',word:'Word readings',listen:'Listening to words',write:'Writing'};
+const TYPE_ORDER=['read','recall','word','listen','write'];
+const kindOf=l=>{const t=l.id.split('|')[1];return t==='word'&&l.v==='listen'?'listen':t;};
+// What to call a kanji or word in the missed list: its meaning, or its reading
+const nameOf=k=>BY[k]?BY[k].m:WORD_BY[k]?WORD_BY[k].r:'';
 const pct=(a,b)=>b?Math.round(a/b*100)+'%':'–';
 
 // All the numbers the report needs, worked out from the answer log
@@ -18,17 +22,19 @@ function reportData(){
   const byKey=Object.fromEntries(days.map(d=>[d.key,d]));
   log.forEach(l=>{const d=byKey[ymd(new Date(l.t))];if(d){d.n++;d.ms+=Math.min(l.ms||0,30000);}});
   const weekStart=today.getTime()-6*DAY,week=log.filter(l=>l.t>=weekStart);
-  const types={read:{n:0,ok:0},recall:{n:0,ok:0},listen:{n:0,ok:0},write:{n:0,ok:0}};
+  const types=Object.fromEntries(TYPE_ORDER.map(t=>[t,{n:0,ok:0}]));
   week.forEach(l=>{const t=types[kindOf(l)];t.n++;if(l.ok)t.ok++;});
   const misses={},pairs={};
   log.filter(l=>l.t>=today.getTime()-13*DAY&&!l.ok).forEach(l=>{
     const k=l.id.split('|')[0];misses[k]=(misses[k]||0)+1;
     if(l.c){const p=mixKey(k,l.c);if(p)pairs[p]=(pairs[p]||0)+1;}
   });
-  const levels=[0,0,0,0,0];KANA.forEach(it=>{const v=level(it);if(v>=1)levels[v]++;});
+  const levels=[0,0,0,0,0];KANJI.forEach(it=>{const v=level(it);if(v>=1)levels[v]++;});
+  const wordCards=WORDS.map(w=>cardScore(w.w+'|word'));
   const w=days.slice(7);
   return {days,types,levels,
-    added:KANA.filter(it=>S.rows.includes(it.row)).length,
+    added:KANJI.filter(it=>S.rows.includes(it.set)).length,
+    wordsStarted:wordCards.filter(v=>v>=1).length,wordsGood:wordCards.filter(v=>v>=3).length,
     activeDays:w.filter(d=>d.n).length,
     answers:week.length,ok:week.filter(l=>l.ok).length,dk:week.filter(l=>l.dk).length,
     mins:Math.round(w.reduce((a,d)=>a+d.ms,0)/60000),
@@ -41,7 +47,7 @@ export function renderReport(){
   endSession();
   const R=reportData(),max=Math.max(1,...R.days.map(d=>d.n)),st=streak();
   const bars=R.days.map((d,i)=>`<div class="bcol${d.n?'':' zero'}${i===13?' today':''}" aria-label="${d.n} answers"><span class="bwrap"><span class="bar" style="height:${d.n?Math.max(4,Math.round(d.n/max*100)):3}%"></span></span><span class="blab">${d.label}</span></div>`).join('');
-  const types=['read','recall','listen','write'].filter(k=>R.types[k].n).map(k=>`<div class="li"><span>${TYPE_NAME[k]}</span><span>${pct(R.types[k].ok,R.types[k].n)} of ${R.types[k].n}</span></div>`).join('')||'<div class="li"><span>No answers this week yet</span></div>';
+  const types=TYPE_ORDER.filter(k=>R.types[k].n).map(k=>`<div class="li"><span>${TYPE_NAME[k]}</span><span>${pct(R.types[k].ok,R.types[k].n)} of ${R.types[k].n}</span></div>`).join('')||'<div class="li"><span>No answers this week yet</span></div>';
   const names=['','Learning','Shaky','Good','Solid'];
   const lastText=R.last?`Last practised ${new Date(R.last).toLocaleString('en-GB',{weekday:'long',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}.`:'No practice yet.';
   app.innerHTML=`<header class="top"><h1>Progress</h1><button class="link" data-act="home">Back</button></header>
@@ -51,14 +57,15 @@ export function renderReport(){
       <div class="stat"><b>${R.activeDays} of 7</b><span>days practised this week</span></div>
       <div class="stat"><b>${R.answers}</b><span>answers this week, about ${R.mins} min</span></div>
       <div class="stat"><b>${pct(R.ok,R.answers)}</b><span>right this week</span></div>
-      <div class="stat"><b>${R.added} of ${KANA.length}</b><span>hiragana added</span></div>
+      <div class="stat"><b>${R.added} of ${KANJI.length}</b><span>kanji added</span></div>
     </div>
     <h2>Answers each day, last two weeks</h2><div class="bars">${bars}</div>
     <h2>How solid they are</h2>
-    <div class="stack">${[1,2,3,4].map(i=>`<i style="width:${(R.levels[i]/KANA.length*100).toFixed(2)}%;background:var(--l${i})"></i>`).join('')}</div>
-    <div class="legend">${[1,2,3,4].map(i=>`<span><i style="background:var(--l${i})"></i>${names[i]} ${R.levels[i]}</span>`).join('')}<span>Not added ${KANA.length-R.added}</span></div>
+    <div class="stack">${[1,2,3,4].map(i=>`<i style="width:${(R.levels[i]/KANJI.length*100).toFixed(2)}%;background:var(--l${i})"></i>`).join('')}</div>
+    <div class="legend">${[1,2,3,4].map(i=>`<span><i style="background:var(--l${i})"></i>${names[i]} ${R.levels[i]}</span>`).join('')}<span>Not added ${KANJI.length-R.added}</span></div>
+    <h2>Words</h2><div class="list"><div class="li"><span>Started</span><span>${R.wordsStarted} of ${WORDS.length}</span></div><div class="li"><span>Good or solid</span><span>${R.wordsGood}</span></div></div>
     <h2>Accuracy this week</h2><div class="list">${types}${R.dk?`<div class="li"><span>Don't know (counted as misses)</span><span>${R.dk}</span></div>`:''}</div>
-    ${R.hard.length?`<h2>Most missed, last two weeks</h2><div class="chips">${R.hard.map(([k,n])=>`<span class="chip"><span class="kana">${k}</span><small>${BY[k].r}, missed ${n}</small></span>`).join('')}</div>`:''}
+    ${R.hard.length?`<h2>Most missed, last two weeks</h2><div class="chips">${R.hard.map(([k,n])=>`<span class="chip"><span class="kana">${k}</span><small>${nameOf(k)}, missed ${n}</small></span>`).join('')}</div>`:''}
     ${R.pairs.length?`<h2>Often mixed up</h2><div class="list">${R.pairs.map(([p,n])=>`<div class="li"><span class="kana" style="font-size:1.5rem">${mixParts(p).join(' and ')}</span><span>${n} times</span></div>`).join('')}</div>`:''}
     <button class="primary" data-act="share" style="margin-top:24px">Share this report</button>
     <p class="hint">Placement checks aren't counted. Minutes are estimated from answer times.</p>
@@ -67,13 +74,13 @@ export function renderReport(){
 
 export function reportText(){
   const R=reportData();
-  const lines=['Hiragana progress, '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}),
+  const lines=['Kanji progress, '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}),
     `Practised on ${R.activeDays} of the last 7 days`,
     `${R.answers} answers this week (about ${R.mins} min), ${pct(R.ok,R.answers)} right`,
-    `${R.added} of ${KANA.length} hiragana added: ${R.levels[4]} solid, ${R.levels[3]} good, ${R.levels[2]} shaky, ${R.levels[1]} learning`];
-  ['read','recall','listen','write'].forEach(k=>{const t=R.types[k];if(t.n)lines.push(`${TYPE_NAME[k]}: ${pct(t.ok,t.n)} of ${t.n}`);});
+    `${R.added} of ${KANJI.length} kanji added, ${R.wordsGood} of ${WORDS.length} words good or solid: ${R.levels[4]} solid, ${R.levels[3]} good, ${R.levels[2]} shaky, ${R.levels[1]} learning`];
+  TYPE_ORDER.forEach(k=>{const t=R.types[k];if(t.n)lines.push(`${TYPE_NAME[k]}: ${pct(t.ok,t.n)} of ${t.n}`);});
   if(R.dk)lines.push(`Tapped "Don't know" ${R.dk} ${R.dk===1?'time':'times'}`);
-  if(R.hard.length)lines.push('Most missed: '+R.hard.slice(0,6).map(([k,n])=>`${k} (${BY[k].r}) ${n}x`).join(', '));
+  if(R.hard.length)lines.push('Most missed: '+R.hard.slice(0,6).map(([k,n])=>`${k} (${nameOf(k)}) ${n}x`).join(', '));
   if(R.pairs.length)lines.push('Mixed up: '+R.pairs.map(([p])=>mixParts(p).join('/')).join(', '));
   return lines.join('\n');
 }

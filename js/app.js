@@ -4,12 +4,12 @@
 // one click handler for the whole page reads that attribute and calls the right function.
 
 import {S,save,fresh,replaceState} from './storage.js';
-import {ROWMAP,BY,WORD_BY} from './deck.js';
+import {BY,WORD_BY} from './deck.js';
 import {backupText,checkBackup} from './backup.js';
-import {shuffle,buildReview,buildPractice,buildRunThrough} from './queues.js';
-import {speak,speakWord} from './sound.js';
+import {buildReview,buildPractice,buildPlacement,buildRunThrough} from './queues.js';
+import {speakWord} from './sound.js';
 import {toast} from './ui.js';
-import {closeSheet,rowSheet,settingsSheet,feedbackSheet} from './sheets.js';
+import {closeSheet,setSheet,settingsSheet,feedbackSheet} from './sheets.js';
 import {closeTip,resetTips} from './tips.js';
 import {needsWelcome,renderWelcome,welcomeNext,finishWelcome,install} from './welcome.js';
 import {editHint,setHint} from './hints.js';
@@ -20,7 +20,7 @@ import './keys.js'; // keyboard shortcuts for computers (sets itself up when loa
 
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;
-  const a=b.dataset.act,row=b.dataset.row;
+  const a=b.dataset.act,set=b.dataset.set;
   switch(a){
     // Starting sessions
     case 'review':closeSheet();startSession('review',buildReview());break;
@@ -41,23 +41,22 @@ document.addEventListener('click',e=>{
     case 'feedback':feedbackSheet();break;
     case 'share':{
       const text=reportText();
-      if(navigator.share)navigator.share({title:'Hiragana progress',text}).catch(err=>{if(!err||err.name!=='AbortError')copyText(text);});
+      if(navigator.share)navigator.share({title:'Kanji progress',text}).catch(err=>{if(!err||err.name!=='AbortError')copyText(text);});
       else copyText(text);
       break;}
-    // Rows on the chart
-    case 'row':rowSheet(row);break;
-    case 'rownew':if(!S.rows.includes(row))S.rows.push(row);save();closeSheet();renderHome();break;
-    case 'rowadd':
-      if(!S.rows.includes(row))S.rows.push(row);save();closeSheet();
-      startSession('placement',shuffle(ROWMAP[row].k.map(k=>k+'|read')));break;
-    case 'rowpractice':closeSheet();startSession('practice',buildPractice(row));break;
-    case 'rowremove':
-      if(confirm('Remove this row from your chart? Its progress is kept if you add it back.')){S.rows=S.rows.filter(r=>r!==row);save();closeSheet();renderHome();}
+    // Sets on the chart
+    case 'set':setSheet(set);break;
+    case 'setnew':if(!S.rows.includes(set))S.rows.push(set);save();closeSheet();renderHome();break;
+    case 'setadd':
+      if(!S.rows.includes(set))S.rows.push(set);save();closeSheet();
+      startSession('placement',buildPlacement(set));break;
+    case 'setpractice':closeSheet();startSession('practice',buildPractice(set));break;
+    case 'setremove':
+      if(confirm('Remove this set from your chart? Its progress is kept if you add it back.')){S.rows=S.rows.filter(r=>r!==set);save();closeSheet();renderHome();}
       break;
     // Sound
-    case 'speak':speak(b.dataset.k);break;
     case 'speakword':speakWord(WORD_BY[b.dataset.w]);break; // an example word
-    case 'testvoice':(async()=>{for(const k of ['は','へ','を','ん'])await speak(k);})();break;
+    case 'testvoice':(async()=>{for(const w of ['山','三つ','三月'])await speakWord(WORD_BY[w]);})();break;
     // During a session
     case 'answer':answer(b.dataset.k);break;
     case 'next':next();break;
@@ -76,7 +75,7 @@ document.addEventListener('click',e=>{
     case 'pnext':pNext();break;
     case 'pdone':pDone();break;
     // Hints
-    case 'edithint':editHint(b.dataset.k,b.closest('.hintkeys')?BY[b.dataset.k].row:null);break; // from the chart? go back there after
+    case 'edithint':editHint(b.dataset.k,b.closest('.hintkeys')?BY[b.dataset.k].set:null);break; // from the chart? go back there after
     case 'savehint':setHint(b.dataset.k,document.getElementById('hinttext').value.trim());break;
     case 'resethint':setHint(b.dataset.k,'');break;
     // Backup and reset
@@ -116,7 +115,7 @@ document.addEventListener('change',e=>{
     S.settings.types=ticked;save();renderHome();
   }
   if(e.target.name==='wpmode'){S.settings.practise=e.target.value;save();}
-  if(e.target.id==='voice'){S.settings.voice=e.target.value;save();speak('あ');}
+  if(e.target.id==='voice'){S.settings.voice=e.target.value;save();speakWord(WORD_BY['山']);}
 });
 
 if(needsWelcome())renderWelcome();else renderHome();

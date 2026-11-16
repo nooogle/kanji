@@ -24,11 +24,12 @@ function installHTML(){
 }
 
 const SLIDES=()=>[
-  `<div class="wbig kana">あ</div><h2>Learn to read and write hiragana</h2>
-   <p>A few minutes a day. The ones you find hard come back more often, and the ones you know drift away.</p>`,
-  `<h2>Practise the way you'll be tested</h2>
-   <ul><li><b>Read it:</b> pick the sound</li><li><b>Recognise it:</b> from romaji, or by ear</li><li><b>Write it:</b> draw it, see the stroke order, and mark yourself</li></ul>
-   <p>The app moves you on as you improve. Or choose exactly what to practise in <b>Settings → What to practise</b>, such as writing only.</p>`,
+  `<div class="wbig kana">漢</div><h2>Learn the kanji you need for the GCSE</h2>
+   <p>Kanji are the characters Japanese borrowed from Chinese. Each one stands for an idea, like 山 for mountain. A few minutes a day: the ones you find hard come back more often, and the ones you know drift away.</p>`,
+  `<h2>Readings come from real words</h2>
+   <p>A kanji can be read in different ways, depending on the word. So you learn what each one means, then how it sounds inside words like 三つ and 三月.</p>
+   <ul><li><b>Meaning:</b> see the kanji, pick what it means</li><li><b>Recall:</b> see the meaning, pick the kanji</li><li><b>Write:</b> draw it, see the stroke order, and mark yourself</li><li><b>Words:</b> read them, and hear them</li></ul>
+   <p>The app moves you on as you improve. Or choose exactly what to practise in <b>Settings → What to practise</b>.</p>`,
   `<h2>Your progress stays on your phone</h2>
    <p>No account, no sign-up, no ads. Copy a backup in Settings now and then.</p>${installHTML()}`,
   `<h2>Help make it better</h2>

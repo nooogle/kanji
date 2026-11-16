@@ -80,11 +80,11 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 .sq .big.two{font-size:min(26vw,100px);letter-spacing:-.08em} /* きゃ */
 .sq .big.three{font-size:min(19vw,74px);letter-spacing:-.06em} /* かった */
 /* The two words of a っ pair, tap to hear each one */
-.pairs{display:flex;gap:10px;justify-content:center;margin:14px 0 0}
-.pw{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:104px;padding:8px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.pairs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 0}
+.pw{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:104px;max-width:100%;text-align:center;padding:8px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
 .pw .kana{font-family:var(--kana);font-size:1.8rem;font-weight:600}
 .pw small{font-weight:700;color:var(--muted)}
-.sq .roma{position:relative;z-index:1;font-size:min(15vw,60px);font-weight:700}
+.sq .roma{position:relative;z-index:1;font-size:min(10vw,38px);line-height:1.2;font-weight:700;text-align:center;padding:8px;overflow-wrap:anywhere}
 .model{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--kana);font-size:min(60vw,230px);line-height:1;color:var(--accent);opacity:0;z-index:1;pointer-events:none}
 .model.show{opacity:.3}
 .trace{position:absolute;inset:0;z-index:3;padding:0;border:0;background:none}
@@ -238,3 +238,6 @@ textarea{width:100%;min-height:70px;border-radius:12px;border:1.5px solid var(--
 
 /* Readings under a kanji or a word (on and kun), in a quiet colour */
 .rd{margin:6px 0 4px;text-align:center;font-size:.95rem;line-height:1.5;color:var(--muted)}
+
+/* The name of a set, above its kanji on the chart */
+.setname{margin:12px 2px 2px;font-size:.85rem;font-weight:700;color:var(--muted)}
