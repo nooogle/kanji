@@ -5,7 +5,7 @@
 
 import {fsrs,generatorParameters,createEmptyCard,Rating,State} from '../vendor/ts-fsrs-5.4.2.mjs';
 import {S,save} from './storage.js';
-import {KANA,BY,TYPES} from './deck.js';
+import {KANJI,WORDS,BY,TYPES,WORD_TYPE,entryOf} from './deck.js';
 
 export {State};
 
@@ -18,7 +18,7 @@ const fromCard=(c,ok)=>Object.assign({},c,{due:c.due.getTime(),last_review:c.las
 export function newCard(now=Date.now()){return fromCard(createEmptyCard(new Date(now)),false);}
 
 // Answer-time limits in ms for a right answer: quicker than the first is Easy, slower than the second is Hard
-const SPEED={read:[1800,6000],recall:[2200,7000],listen:[3200,8000]};
+const SPEED={read:[1800,6000],recall:[2200,7000],word:[2500,8000],listen:[3200,8000]};
 function rating(type,ok,ms,listen,c){
   if(!ok)return Rating.Again;
   if(type==='write')return Rating.Good; // self-graded, so no speed signal
@@ -38,21 +38,36 @@ function placementGrade(c,ok,now){
 
 /** True when the user has picked which card types to practise, instead of letting them unlock in turn. */
 export const isManual=()=>S.settings.mode==='manual';
-/** The card types ticked in manual mode (all of them if the setting is missing). */
-export function manualTypes(){const t=S.settings.types;return Array.isArray(t)&&t.length?TYPES.filter(x=>t.includes(x)):TYPES;}
+/** The card types ticked in manual mode (all of them if the setting is missing). Word reading counts as a type. */
+export function manualTypes(){const all=[...TYPES,WORD_TYPE],t=S.settings.types;return Array.isArray(t)&&t.length?all.filter(x=>t.includes(x)):all;}
 
-// Automatic: a card type unlocks once the one before it (read, then recall, then write) is past its learning steps.
-// Manual: just the ticked types, for every kana in the chosen rows, with nothing to unlock.
+// Automatic: a kanji's Recall card unlocks once its Meaning card is past its learning steps, and Write once Recall is.
+// A word card unlocks once every kanji in the word is in an added set and each one's Meaning card is past its learning steps.
+// Manual: just the ticked types, for every kanji (and word) in the chosen sets, with nothing to unlock.
+// (S.rows holds the ids of the sets the learner has added; the name is kept from the Hiragana drill.)
 function strong(id){const c=S.cards[id];return !!c&&c.state===State.Review;}
-export function unlocked(it,t){
-  if(!S.rows.includes(it.row))return false;
-  if(isManual())return manualTypes().includes(t);
-  if(t==='write'&&S.settings.write===false)return false;
-  if(t==='read'||S.cards[it.k+'|'+t])return true; // once a card type has started it stays in
-  return strong(it.k+'|'+(t==='recall'?'read':'recall'));
+/** Whether the card with this id (like "三|read" or "三つ|word") is currently in play. */
+export function unlockedId(id){
+  const e=entryOf(id);if(!e)return false;
+  const {kind,item,type}=e;
+  if(kind==='kanji'){
+    if(!S.rows.includes(item.set))return false;
+    if(isManual())return manualTypes().includes(type);
+    if(type==='write'&&S.settings.write===false)return false;
+    if(type==='read'||S.cards[id])return true; // once a card type has started it stays in
+    return strong(item.k+'|'+(type==='recall'?'read':'recall'));
+  }
+  if(!item.k.every(k=>S.rows.includes(BY[k].set)))return false;
+  if(isManual())return manualTypes().includes(WORD_TYPE);
+  return !!S.cards[id]||item.k.every(k=>strong(k+'|read'));
 }
-/** Every card id ("ね|read" and so on) that's currently in play. */
-export function activeCards(){const ids=[];KANA.forEach(it=>TYPES.forEach(t=>{if(unlocked(it,t))ids.push(it.k+'|'+t);}));return ids;}
+/** Every card id ("三|read", "三つ|word" and so on) that's currently in play. */
+export function activeCards(){
+  const ids=[];
+  KANJI.forEach(it=>TYPES.forEach(t=>{const id=it.k+'|'+t;if(unlockedId(id))ids.push(id);}));
+  WORDS.forEach(w=>{const id=w.w+'|'+WORD_TYPE;if(unlockedId(id))ids.push(id);});
+  return ids;
+}
 
 // 0 not started, 1 learning, 2-4 by how long it's expected to be remembered
 export function cardScore(id){
@@ -71,22 +86,4 @@ export function grade(id,ok,mode,ms,listen){
   else{r=rating(type,ok,ms,listen,c);S.cards[id]=schedule(c,r,now);}
   S.log.push({t:now,id,ok,ms:Math.round(ms),m:mode,r});
   save();
-}
-
-// Progress saved by the old box scheduler is rebuilt by replaying every logged answer through FSRS
-export function migrate(){
-  if(S.v>=2)return;
-  const old=S.cards,cards={},byId={};
-  S.log.slice().sort((a,b)=>a.t-b.t).forEach(l=>{if(BY[l.id.split('|')[0]])(byId[l.id]=byId[l.id]||[]).push(l);});
-  for(const id in byId){
-    let c=null;const type=id.split('|')[1];
-    for(const l of byId[id]){
-      if(l.m==='practice'){if(!l.ok&&c)c=schedule(c,Rating.Again,l.t);continue;}
-      if(l.m==='placement'){c=placementGrade(c,l.ok,l.t);continue;}
-      c=schedule(c,rating(type,l.ok,l.ms,l.v==='listen',c),l.t);
-    }
-    if(c)cards[id]=c;
-  }
-  for(const id in old)if(!cards[id]&&BY[id.split('|')[0]])cards[id]=newCard(Math.min(old[id].due||Date.now(),Date.now()));
-  S.cardsV1=old;S.cards=cards;S.v=2;save();
 }

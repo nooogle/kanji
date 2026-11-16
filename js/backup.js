@@ -15,7 +15,7 @@ export const backupText=S=>JSON.stringify({app:APP,...S});
 export function checkBackup(s){
   if(!s||typeof s!=='object'||!s.rows||!s.cards)return {error:'That backup could not be read'};
   if(s.app&&s.app!==APP)return {error:`This backup is from ${NAMES[s.app]||'another app'}. Restore it there instead.`};
-  if(unknownCards(s).length)return {error:'That backup is from another app, such as the Katakana drill'};
+  if(unknownCards(s).length)return {error:'That backup is from another app, such as the Hiragana or Katakana drill'};
   const {app,...state}=s;
   return {state};
 }

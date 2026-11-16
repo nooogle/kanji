@@ -6,7 +6,6 @@
 import {S,save,fresh,replaceState} from './storage.js';
 import {ROWMAP,BY} from './deck.js';
 import {backupText,checkBackup} from './backup.js';
-import {migrate} from './scheduler.js';
 import {shuffle,buildReview,buildPractice,buildRunThrough} from './queues.js';
 import {speak,speakWord} from './sound.js';
 import {toast} from './ui.js';
@@ -92,7 +91,7 @@ document.addEventListener('click',e=>{
         if(error){toast(error);break;}
         if(confirm('Replace the progress on this phone with this backup?')){
           const restored=Object.assign(fresh(),s);if(!s.v)restored.v=1; // backups from before FSRS get converted
-          replaceState(restored);migrate();closeSheet();renderHome();toast('Backup restored');}
+          replaceState(restored);closeSheet();renderHome();toast('Backup restored');}
       }catch(err){toast('That backup could not be read');}
       break;}
     case 'reset':
@@ -120,7 +119,6 @@ document.addEventListener('change',e=>{
   if(e.target.id==='voice'){S.settings.voice=e.target.value;save();speak('あ');}
 });
 
-migrate();   // converts progress saved by the old box scheduler (does nothing once done)
 if(needsWelcome())renderWelcome();else renderHome();
 // Keeps the pages, code and voice clips on the phone so it works with no signal
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
