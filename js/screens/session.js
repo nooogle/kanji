@@ -3,13 +3,14 @@
 // A kanji has three cards (meaning, recall, write). Each example word has one (its reading, or hearing it).
 
 import {S,save} from '../storage.js';
-import {BY,WORD_BY,WORDS,entryOf} from '../deck.js';
+import {BY,WORDS,entryOf} from '../deck.js';
 import {grade,newCard} from '../scheduler.js';
 import {buildReview} from '../queues.js';
-import {canSpeak,speak,speakWord,autoSpeak,whenSoundDone} from '../sound.js';
-import {app,spkBtn,toast,DK,esc} from '../ui.js';
+import {canSpeak,speakWord,autoSpeak,whenSoundDone} from '../sound.js';
+import {app,spkBtn,toast,DK,esc,PLAY_ICON} from '../ui.js';
 import {hintBox} from '../hints.js';
 import {pickOptions} from '../options.js';
+import {readingOptions,listenOptions,canListen} from '../words.js';
 import {setupCanvas} from '../drawing.js';
 import {playStrokes,strokeCount,stepSVG,drawInStep,strokesSVG,slideIn,morph} from '../strokes.js';
 import {showTips} from '../tips.js';
@@ -73,8 +74,49 @@ function renderCard(){
   showTips();
 }
 
-// Word cards come in the next task (the reading card and the listening card)
-function renderWordCard(){next();}
+// ----- Word cards -----
+// One card per example word. It's either a reading card (see the word, pick how it's read) or, if the word has a voice
+// clip, sometimes a listening card (hear it, pick the written word). The right answer's button has the word as data-k and
+// the wrong ones '~1', '~2'... so grading works as it does for kanji.
+function renderWordCard(id,w){
+  const optBtns=(opts,ko)=>`<div class="opts">${opts.map((o,i)=>`<button class="opt${ko?' ko':''}" data-act="answer" data-k="${o.ok?w.w:'~'+i}">${esc(o.text)}</button>`).join('')}</div>`;
+  if(!S.cards[id]&&sess.mode==='review'){
+    app.innerHTML=`${bar()}<div class="stage"><p class="ask">New word</p><div class="sq"><span class="big three">${w.w}</span></div>
+      <p class="reveal">${w.r}</p><p class="rd">${esc(w.e)}</p>${spkBtn(w)}
+      <p class="hint">Say it aloud. You'll be tested on this in a moment.</p>
+      <button class="primary" data-act="introok">Got it</button></div>`;
+    if(S.settings.sound&&canListen(w))autoSpeak(w,stillHere());
+    return;
+  }
+  sess.listen=canSpeak&&canListen(w)&&!sess.noSound&&Math.random()<0.5;
+  if(sess.listen){
+    app.innerHTML=`${bar()}<div class="stage"><p class="ask">Which word did you hear?</p><div class="sq" id="lsq"><button class="play" data-act="speakword" data-w="${w.w}" aria-label="Play the word again">${PLAY_ICON}</button></div>
+      ${optBtns(listenOptions(w,S.rows),true)}<button class="link mute" data-act="nosound">Can't use sound right now</button><div class="fb" id="fb"></div></div>`;
+    autoSpeak(w,stillHere());
+  }else{
+    app.innerHTML=`${bar()}<div class="stage"><p class="ask">How is this read?</p><div class="sq"><span class="big three">${w.w}</span></div>
+      ${optBtns(readingOptions(w,S.rows),false)}${DK}<div class="fb" id="fb"></div></div>`;
+  }
+}
+
+/** After an answer on a word card: the reading and meaning. Right answers move on after a pause; wrong ones stay,
+ *  with a prompt to say the word aloud (nothing is recorded or marked). */
+function wordFeedback(w,ok,dk){
+  const m=document.querySelector('.mute');if(m)m.remove();
+  if(sess.listen){const sq=document.getElementById('lsq');if(sq)sq.innerHTML=`<span class="roma kana">${w.w}</span>`;}
+  const line=`<span class="kana">${w.w}</span> is <b>${w.r}</b>: ${esc(w.e)}.`;
+  if(ok){
+    document.getElementById('fb').innerHTML=`<p>${line}</p>`;
+    if(S.settings.sound&&!sess.listen&&canListen(w))speakWord(w);
+    const pos=sess.pos;
+    Promise.all([new Promise(r=>setTimeout(r,1500)),whenSoundDone()]).then(()=>{if(sess&&sess.pos===pos&&sess.answered)next();});
+    return;
+  }
+  const again=sess.mode==='placement'?'It will come up in your reviews.':'You\'ll see it again in a moment.';
+  document.getElementById('fb').innerHTML=`<p>${line} ${dk?again:''}</p>${spkBtn(w)}<p class="rd">Say it aloud: ${w.r}</p>
+    <button class="primary" data-act="next" style="margin-top:14px">Next</button>`;
+  {const nx=document.querySelector('#fb [data-act="next"]');if(nx&&nx.scrollIntoView)nx.scrollIntoView({block:'nearest',behavior:'smooth'});}
+}
 
 // Grade the answer, and bring a missed card back a few cards later in the same session
 function record(id,ok){
@@ -96,6 +138,7 @@ export function answer(chosen){
   if(dk){S.log[S.log.length-1].dk=true;save();}
   else if(!ok&&BY[chosen]){S.log[S.log.length-1].c=chosen;save();} // remember what was picked, to spot mix-ups
   if(sess.listen){S.log[S.log.length-1].v='listen';save();}
+  if(e.kind==='word'){wordFeedback(e.item,ok,dk);showTips();return;}
   if(ok){ // move on after a short pause, but never before the sound has finished
     const pos=sess.pos;
     Promise.all([new Promise(r=>setTimeout(r,900)),whenSoundDone()]).then(()=>{if(sess&&sess.pos===pos&&sess.answered)next();});

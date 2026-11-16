@@ -4,7 +4,7 @@
 // one click handler for the whole page reads that attribute and calls the right function.
 
 import {S,save,fresh,replaceState} from './storage.js';
-import {ROWMAP,BY} from './deck.js';
+import {ROWMAP,BY,WORD_BY} from './deck.js';
 import {backupText,checkBackup} from './backup.js';
 import {shuffle,buildReview,buildPractice,buildRunThrough} from './queues.js';
 import {speak,speakWord} from './sound.js';
@@ -56,7 +56,7 @@ document.addEventListener('click',e=>{
       break;
     // Sound
     case 'speak':speak(b.dataset.k);break;
-    case 'speakword':speakWord(b.dataset.t,b.dataset.c);break; // a word from a っ pair
+    case 'speakword':speakWord(WORD_BY[b.dataset.w]);break; // an example word
     case 'testvoice':(async()=>{for(const k of ['は','へ','を','ん'])await speak(k);})();break;
     // During a session
     case 'answer':answer(b.dataset.k);break;
