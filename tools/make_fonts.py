@@ -3,7 +3,8 @@
 
 Keeping them in the app means they work offline and never hold up the page on a weak signal.
 Google splits each Japanese font into about 120 small pieces; this keeps only the pieces that cover
-characters the app actually uses (all of hiragana, plus whatever appears in the pages and scripts), so a
+characters the app actually uses (all of hiragana and katakana, plus whatever appears in the pages and scripts, which
+includes every kanji and word in js/kanjidata.js), so a
 character that's added later and isn't covered just shows in the phone's own font.
 
 Run it from the top of the repo after adding text with new characters (such as katakana or kanji),
@@ -11,7 +12,7 @@ then rerun tools/make_sw.py with a new version name:
 
     python3 tools/make_fonts.py
 """
-import glob, os, re, urllib.request
+import glob, os, re, sys, urllib.request
 
 FONTS = [('Klee One', '400'), ('Klee One', '600'), ('Zen Maru Gothic', '500'), ('Zen Maru Gothic', '700')]
 CSS_URL = 'https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Maru+Gothic:wght@500;700&display=swap'
@@ -38,7 +39,8 @@ def covers(face, chars):
     return {c for c in chars if any(a <= c <= b for a, b in r)}
 
 
-used = set(range(0x20, 0x7f)) | set(range(0x3041, 0x3097))  # all of ASCII and hiragana
+used = set(range(0x20, 0x7f)) | set(range(0x3041, 0x3097)) | set(range(0x30a1, 0x30fd))  # all of ASCII, hiragana and katakana
+deck = {ord(c) for c in open('js/kanjidata.js', encoding='utf-8').read() if ord(c) > 0x7f}
 for f in glob.glob('*.html') + glob.glob('js/**/*.js', recursive=True) + glob.glob('css/*.css'):
     used |= {ord(c) for c in open(f, encoding='utf-8').read()}
 
@@ -55,6 +57,8 @@ for family, weight in FONTS:
     japanese = [f for sub, f in mine if sub not in OTHER_SCRIPTS + ('latin',) and covers(f, need)]
     left = need - set().union(*(covers(f, need) for f in japanese))
     print(f'{family} {weight}: {len(japanese)} Japanese pieces + latin; left to the phone\'s fonts: {"".join(map(chr, sorted(left)))}')
+    if left & deck:
+        sys.exit('These deck characters are in no piece of %s %s: %s' % (family, weight, ''.join(map(chr, sorted(left & deck)))))
     # Keep Google's order (latin last): where pieces overlap, the browser uses the last one
     for i, face in enumerate(japanese + [latin]):
         url = re.search(r'url\((\S+)\)', face).group(1)
