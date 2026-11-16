@@ -1,0 +1,252 @@
+
+== Numbers 1 to 10 (foundation) ==
+一  one  [on イチ,イツ  kun ひと(つ)]  1 strokes  一 いち "one" / 一つ ひとつ "one (thing)" / 一人 ひとり "one person" / 一月 いちがつ "January" / 一日中 いちにちじゅう "all day long" / 一才 いっさい "one year old" / 一番 いちばん "number one, first"
+二  two  [on ニ  kun ふた(つ)]  2 strokes  二 に "two" / 二つ ふたつ "two (things)"
+三  three  [on サン  kun み(つ),みっ(つ)]  3 strokes  三 さん "three" / 三つ みっつ "three (things)"
+四  four  [on シ  kun よん,よ(つ),よっ(つ)]  5 strokes  四 よん "four" / 四つ よっつ "four (things)"
+五  five  [on ゴ  kun いつ(つ)]  4 strokes  五 ご "five" / 五つ いつつ "five (things)"
+六  six  [on ロク  kun む(つ),むっ(つ)]  4 strokes  六 ろく "six" / 六つ むっつ "six (things)"
+七  seven  [on シチ  kun なな(つ),なの]  2 strokes  七 なな "seven" / 七つ ななつ "seven (things)"
+八  eight  [on ハチ  kun や(つ),やっ(つ)]  2 strokes  八 はち "eight" / 八つ やっつ "eight (things)"
+九  nine  [on キュウ,ク  kun ここの(つ)]  2 strokes  九 きゅう "nine" / 九つ ここのつ "nine (things)" / 九州 きゅうしゅう "Kyushu"
+十  ten  [on ジュウ  kun とお]  2 strokes  十 じゅう "ten" / 十才 じゅっさい "ten years old" / 赤十字 せきじゅうじ "Red Cross"
+
+== Bigger numbers, yen and people (foundation) ==
+百  hundred  [on ヒャク  kun -]  6 strokes  百 ひゃく "one hundred"
+千  thousand  [on セン  kun ち]  3 strokes  千 せん "one thousand"
+万  ten thousand  [on マン,バン  kun -]  3 strokes  万 まん "ten thousand"
+円  yen  [on エン  kun まる(い)]  4 strokes  円 えん "yen"
+人  person  [on ジン,ニン  kun ひと]  2 strokes  一人 ひとり "one person" / 人 にん "counter for people" / 人口 じんこう "population" / 女の人 おんなのひと "woman" / 男の人 おとこのひと "man" / 人気 にんき "popular" / 有名人 ゆうめいじん "celebrity"
+入  enter  [on ニュウ  kun い(れる),はい(る)]  2 strokes  入る はいる "to enter" / 入れる いれる "to put in" / 入学 にゅうがく "entering a school" / 入学式 にゅうがくしき "school entrance ceremony" / 入院 にゅういん "to go into hospital"
+
+== Days, sun and moon, elements (foundation) ==
+日  sun, day  [on ニチ,ジツ  kun ひ,か]  4 strokes  日 ひ "day" / 一日中 いちにちじゅう "all day long" / 今日 きょう "today" / 日本 にほん "Japan" / 土曜日 どようび "Saturday" / 木曜日 もくようび "Thursday" / 毎日 まいにち "every day"
+月  moon, month  [on ゲツ,ガツ  kun つき]  4 strokes  一月 いちがつ "January" / 月 つき "moon" / 先月 せんげつ "last month"
+火  fire  [on カ  kun ひ]  4 strokes  火山 かざん "volcano" / 花火 はなび "fireworks" / 火事 かじ "(a) fire"
+水  water  [on スイ  kun みず]  4 strokes  水 みず "water" / 水泳 すいえい "swimming"
+木  tree  [on モク,ボク  kun き]  4 strokes  木 き "tree" / 木曜日 もくようび "Thursday"
+金  gold, money  [on キン  kun かね]  8 strokes  お金 おかね "money" / 金 きん "gold" / 料金 りょうきん "fare" / 金魚 きんぎょ "gold fish"
+土  earth, soil  [on ド,ト  kun つち]  3 strokes  土 つち "soil, earth" / 土曜日 どようび "Saturday"
+
+== Body and people (foundation) ==
+口  mouth  [on コウ,ク  kun くち]  3 strokes  人口 じんこう "population" / 口 くち "mouth"
+手  hand  [on シュ  kun て]  4 strokes  手 て "hand(s)" / 空手 からて "karate" / 手紙 てがみ "a letter" / 切手 きって "stamps"
+目  eye  [on モク  kun め]  5 strokes  目 め "eye(s)"
+耳  ear  [on ジ  kun みみ]  6 strokes  耳 みみ "ear"
+女  woman  [on ジョ  kun おんな]  3 strokes  女の人 おんなのひと "woman" / 女の子 おんなのこ "girl"
+男  man  [on ダン  kun おとこ]  7 strokes  男の人 おとこのひと "man" / 男の子 おとこのこ "boy"
+子  child  [on シ  kun こ]  3 strokes  女の子 おんなのこ "girl" / 男の子 おとこのこ "boy"
+友  friend  [on ユウ  kun とも]  4 strokes  友だち ともだち "friend"
+私  I, me  [on シ  kun わたし]  7 strokes  私 わたし "I, me" / 私たち わたしたち "we"
+自  self  [on ジ,シ  kun -]  6 strokes  自分 じぶん "self" / 自動車 じどうしゃ "car"
+
+== Size and direction (foundation) ==
+大  big  [on ダイ,タイ  kun おお(きい)]  3 strokes  大きい おおきい "large, big" / 大きさ おおきさ "size" / 大学 だいがく "university" / 大使館 たいしかん "embassy" / 大好きな だいすきな "that which I love"
+小  small  [on ショウ  kun ちい(さい),こ,お]  3 strokes  小さい ちいさい "small" / 小さな ちいさな "small"
+上  up, above  [on ジョウ  kun うえ,あ(がる),のぼ(る)]  3 strokes  上 うえ "on, above" / 上がる あがる "to rise"
+下  down, below  [on カ,ゲ  kun した,さ(がる),くだ(さる)]  3 strokes  下 した "below, beneath" / 下がる さがる "to fall"
+中  middle, inside  [on チュウ  kun なか]  4 strokes  一日中 いちにちじゅう "all day long" / 中 なか "in, inside" / 中心 ちゅうしん "centre" / 中間 ちゅうかん "mid-(term)" / 真夜中 まよなか "midnight"
+外  outside  [on ガイ  kun そと,ほか]  5 strokes  外 そと "outside" / 外食 がいしょく "eating out" / 外国 がいこく "abroad, foreign country"
+右  right  [on ユウ  kun みぎ]  5 strokes  右 みぎ "right"
+左  left  [on サ  kun ひだり]  5 strokes  左 ひだり "left"
+高  high, expensive  [on コウ  kun たか(い)]  10 strokes  高い たかい "high, expensive" / 高校 こうこう "(senior) high school"
+
+== Nature, animals and meat (foundation) ==
+山  mountain  [on サン  kun やま]  3 strokes  山 やま "mountain" / 火山 かざん "volcano"
+川  river  [on セン  kun かわ]  3 strokes  川 かわ "river"
+田  rice field  [on デン  kun た]  5 strokes  田んぼ たんぼ "rice field"
+天  sky, heaven  [on テン  kun -]  4 strokes  天ぷら てんぷら "tempura" / 天気 てんき "weather"
+牛  cow  [on ギュウ  kun うし]  4 strokes  牛 うし "cow" / 牛肉 ぎゅうにく "beef"
+犬  dog  [on ケン  kun いぬ]  4 strokes  犬 いぬ "dog"
+肉  meat  [on ニク  kun -]  6 strokes  牛肉 ぎゅうにく "beef" / 肉 にく "meat" / 肉屋 にくや "butcher"
+白  white  [on ハク  kun しろ(い)]  5 strokes  白い しろい "white"
+
+== Time words (foundation) ==
+今  now  [on コン  kun いま]  4 strokes  今 いま "now" / 今年 ことし "this year" / 今日 きょう "today" / 今週 こんしゅう "this week"
+年  year  [on ネン  kun とし]  6 strokes  今年 ことし "this year" / 年 とし "age (years)" / 毎年 まいとし "every year"
+時  time, hour  [on ジ  kun とき]  10 strokes  時々 ときどき "sometimes" / 何時 なんじ "what time"
+分  minute, part  [on ブン,フン  kun わ(かる)]  4 strokes  分かる わかる "to understand" / 自分 じぶん "self" / 半分 はんぶん "half" / 多分 たぶん "probably"
+先  previous, ahead  [on セン  kun さき]  6 strokes  先月 せんげつ "last month" / 先生 せんせい "teacher" / 先週 せんしゅう "last week"
+来  come, next  [on ライ  kun く(る)]  7 strokes  ついて来る ついてくる "to come (with someone)" / 来る くる "to come"
+
+== Everyday actions (foundation) ==
+出  go out  [on シュツ  kun で(る),だ(す)]  5 strokes  出す だす "to put out, to hand in" / 出る でる "to go out" / 思い出 おもいで "memory"
+行  go  [on コウ,ギョウ  kun い(く),おこな(う)]  6 strokes  ついて行く ついていく "to go (with someone)" / 行く いく "to go" / 銀行 ぎんこう "bank" / 旅行 りょこう "travelling"
+見  see, look  [on ケン  kun み(る)]  7 strokes  見える みえる "to be visible" / 見る みる "to see, to watch, to look"
+言  say  [on ゲン  kun い(う)]  7 strokes  言う いう "to say" / 言語 げんご "language(s)"
+食  eat, food  [on ショク  kun た(べる),く(う)]  9 strokes  外食 がいしょく "eating out" / 食べる たべる "to eat" / 和食 わしょく "Japanese food"
+生  life, be born  [on セイ,ショウ  kun い(きる),う(まれる),なま]  5 strokes  先生 せんせい "teacher" / 生きる いきる "to live"
+何  what  [on カ  kun なに,なん]  7 strokes  何 なに "what" / 何時 なんじ "what time"
+
+== Places and school (foundation) ==
+市  city  [on シ  kun いち]  5 strokes  市 し "city" / 市場 いちば "market"
+町  town  [on チョウ  kun まち]  7 strokes  町 まち "town"
+村  village  [on ソン  kun むら]  7 strokes  村 むら "village"
+県  prefecture  [on ケン  kun -]  9 strokes  県 けん "prefecture"
+国  country  [on コク  kun くに]  8 strokes  国 くに "country" / 外国 がいこく "abroad, foreign country" / 英国 えいこく "Britain"
+家  house, home  [on カ,ケ  kun いえ,うち]  10 strokes  家 いえ "house" / 家族 かぞく "family" / 画家 がか "painter" / 作家 さっか "writer"
+学  study  [on ガク  kun まな(ぶ)]  8 strokes  入学 にゅうがく "entering a school" / 大学 だいがく "university" / 学校 がっこう "school" / 文学 ぶんがく "literature" / 入学式 にゅうがくしき "school entrance ceremony" / 化学 かがく "chemistry"
+校  school  [on コウ  kun -]  10 strokes  学校 がっこう "school" / 高校 こうこう "(senior) high school" / 校庭 こうてい "school yard"
+
+== Text, age and spirit (foundation) ==
+本  book, origin  [on ホン  kun もと]  5 strokes  日本 にほん "Japan" / 本 ほん "book"
+字  letter, character  [on ジ  kun -]  6 strokes  字 じ "letter(s)" / 漢字 かんじ "kanji" / 赤十字 せきじゅうじ "Red Cross"
+才  age  [on サイ  kun -]  3 strokes  一才 いっさい "one year old" / 十才 じゅっさい "ten years old"
+気  spirit, feeling  [on キ,ケ  kun -]  6 strokes  人気 にんき "popular" / 元気な げんきな "lively, energetic, healthy" / 天気 てんき "weather" / 病気 びょうき "ill, illness" / 気持ち きもち "feeling" / 電気 でんき "electricity"
+元  root, healthy  [on ゲン,ガン  kun もと]  4 strokes  元気な げんきな "lively, energetic, healthy"
+
+== Family (higher) ==
+父  father  [on フ  kun ちち]  4 strokes  お父さん おとうさん "father" / 父 ちち "father"
+母  mother  [on ボ  kun はは]  5 strokes  お母さん おかあさん "mother" / 母 はは "mother"
+兄  older brother  [on ケイ  kun あに]  5 strokes  お兄さん おにいさん "elder brother" / 兄 あに "elder brother"
+弟  younger brother  [on テイ,ダイ  kun おとうと]  7 strokes  弟 おとうと "younger brother" / 弟さん おとうとさん "younger brother"
+姉  older sister  [on シ  kun あね]  8 strokes  お姉さん おねえさん "elder sister" / 姉 あね "elder sister"
+妹  younger sister  [on マイ  kun いもうと]  8 strokes  妹 いもうと "younger sister" / 妹さん いもうとさん "younger sister"
+族  tribe, family  [on ゾク  kun -]  11 strokes  家族 かぞく "family"
+
+== Seasons and weather (higher) ==
+春  spring  [on シュン  kun はる]  9 strokes  春 はる "spring" / 春休み はるやすみ "spring holiday"
+夏  summer  [on カ  kun なつ]  10 strokes  夏 なつ "summer" / 夏休み なつやすみ "summer holiday"
+秋  autumn  [on シュウ  kun あき]  9 strokes  秋 あき "autumn"
+冬  winter  [on トウ  kun ふゆ]  5 strokes  冬 ふゆ "winter" / 冬休み ふゆやすみ "winter holiday"
+雨  rain  [on ウ  kun あめ]  8 strokes  雨 あめ "rain"
+雪  snow  [on セツ  kun ゆき]  11 strokes  雪 ゆき "snow"
+風  wind  [on フウ  kun かぜ]  9 strokes  風 かぜ "wind"
+空  empty  [on クウ  kun そら,あ(く),から]  8 strokes  空 そら "sky" / 空手 からて "karate"
+
+== Compass and regions (higher) ==
+北  north  [on ホク  kun きた]  5 strokes  北 きた "north" / 北海道 ほっかいどう "Hokkaido"
+西  west  [on セイ,サイ  kun にし]  6 strokes  西 にし "west"
+南  south  [on ナン  kun みなみ]  9 strokes  南 みなみ "south"
+東  east  [on トウ  kun ひがし]  8 strokes  東 ひがし "east" / 東京 とうきょう "Tokyo"
+京  capital  [on キョウ,ケイ  kun -]  8 strokes  京都 きょうと "Kyoto" / 東京 とうきょう "Tokyo"
+都  metropolis  [on ト,ツ  kun みやこ]  11 strokes  京都 きょうと "Kyoto" / 都会 とかい "large city"
+州  state, province  [on シュウ  kun す]  6 strokes  九州 きゅうしゅう "Kyushu" / 州 しゅう "state"
+近  near  [on キン  kun ちか(い)]  7 strokes  近い ちかい "near" / 近く ちかく "near"
+
+== Times of day and week (higher) ==
+午  noon  [on ゴ  kun -]  4 strokes  午前 ごぜん "am" / 午後 ごご "pm"
+半  half  [on ハン  kun なか(ば)]  5 strokes  半分 はんぶん "half"
+前  before, front  [on ゼン  kun まえ]  9 strokes  前 まえ "in front of" / 午前 ごぜん "am"
+後  after, behind  [on ゴ,コウ  kun のち,うし(ろ),あと]  9 strokes  午後 ごご "pm" / 後で あとで "later"
+昼  daytime  [on チュウ  kun ひる]  9 strokes  昼 ひる "noon" / 昼ごはん ひるごはん "lunch"
+夜  night  [on ヤ  kun よる,よ]  8 strokes  夜 よる "night" / 真夜中 まよなか "midnight"
+朝  morning  [on チョウ  kun あさ]  12 strokes  朝 あさ "morning" / 朝ごはん あさごはん "breakfast"
+晩  evening  [on バン  kun -]  12 strokes  晩 ばん "evening" / 晩ごはん ばんごはん "dinner"
+週  week  [on シュウ  kun -]  11 strokes  今週 こんしゅう "this week" / 先週 せんしゅう "last week"
+曜  weekday  [on ヨウ  kun -]  18 strokes  土曜日 どようび "Saturday" / 木曜日 もくようび "Thursday"
+毎  every  [on マイ  kun -]  6 strokes  毎年 まいとし "every year" / 毎日 まいにち "every day"
+
+== School subjects (higher) ==
+教  teach  [on キョウ  kun おし(える)]  11 strokes  教える おしえる "to teach, to tell" / 教会 きょうかい "church" / 教室 きょうしつ "classroom"
+勉  effort  [on ベン  kun -]  10 strokes  勉強 べんきょう "study"
+強  strong  [on キョウ,ゴウ  kun つよ(い)]  11 strokes  勉強 べんきょう "study" / 強い つよい "strong"
+英  English  [on エイ  kun -]  8 strokes  英国 えいこく "Britain" / 英語 えいご "English"
+語  language, word  [on ゴ  kun かた(る)]  14 strokes  英語 えいご "English" / 言語 げんご "language(s)"
+読  read  [on ドク  kun よ(む)]  14 strokes  読む よむ "to read" / 読書 どくしょ "reading"
+書  write  [on ショ  kun か(く)]  10 strokes  書く かく "to write" / 読書 どくしょ "reading" / 図書館 としょかん "library"
+写  copy, photograph  [on シャ  kun うつ(す)]  5 strokes  写真 しゃしん "photograph, photography"
+紙  paper  [on シ  kun かみ]  10 strokes  手紙 てがみ "a letter" / 紙 かみ "paper"
+文  sentence, writing  [on ブン  kun ふみ]  4 strokes  文学 ぶんがく "literature" / 文化 ぶんか "culture" / 作文 さくぶん "essay"
+画  picture  [on ガ,カク  kun -]  8 strokes  画家 がか "painter" / 映画 えいが "film" / 映画館 えいがかん "cinema"
+
+== Words, music and events (higher) ==
+音  sound  [on オン  kun おと,ね]  9 strokes  音 おと "sound" / 音楽 おんがく "music"
+楽  fun, music  [on ガク,ラク  kun たの(しい)]  13 strokes  楽な らくな "easy" / 音楽 おんがく "music"
+話  talk, story  [on ワ  kun はな(す),はなし]  13 strokes  話 はなし "talk" / 話す はなす "to talk" / 電話 でんわ "telephone"
+聞  listen, ask  [on ブン  kun き(く)]  14 strokes  聞こえる きこえる "to be audible" / 新聞 しんぶん "newspaper"
+映  reflect, project  [on エイ  kun うつ(る)]  9 strokes  映画 えいが "film" / 映画館 えいがかん "cinema"
+漢  Chinese  [on カン  kun -]  13 strokes  漢字 かんじ "kanji"
+祭  festival  [on サイ  kun まつ(り)]  11 strokes  祭り まつり "festival"
+式  ceremony  [on シキ  kun -]  6 strokes  入学式 にゅうがくしき "school entrance ceremony"
+
+== Places in town (higher) ==
+駅  station  [on エキ  kun -]  14 strokes  駅 えき "station"
+銀  silver  [on ギン  kun -]  14 strokes  銀 ぎん "silver" / 銀行 ぎんこう "bank"
+店  shop  [on テン  kun みせ]  8 strokes  店 みせ "shop"
+屋  roof, shop  [on オク  kun や]  9 strokes  たばこ屋 たばこや "tobacco shop" / 肉屋 にくや "butcher" / 部屋 へや "room"
+館  hall  [on カン  kun -]  16 strokes  図書館 としょかん "library" / 映画館 えいがかん "cinema" / 大使館 たいしかん "embassy" / 旅館 りょかん "Japanese inn"
+院  institution  [on イン  kun -]  10 strokes  入院 にゅういん "to go into hospital" / 病院 びょういん "hospital"
+園  park  [on エン  kun その]  13 strokes  公園 こうえん "park" / 動物園 どうぶつえん "zoo"
+社  company  [on シャ  kun やしろ]  7 strokes  神社 じんじゃ "shrine" / 社長 しゃちょう "company president" / 会社 かいしゃ "company"
+公  public  [on コウ  kun -]  4 strokes  公園 こうえん "park"
+寺  temple  [on ジ  kun てら]  6 strokes  お寺 おてら "temple"
+神  god  [on シン,ジン  kun かみ]  9 strokes  神社 じんじゃ "shrine" / 神道 しんとう "Shinto"
+図  diagram, plan  [on ズ,ト  kun はか(る)]  7 strokes  図書館 としょかん "library" / 地図 ちず "map"
+
+== Food and shopping (higher) ==
+飲  drink  [on イン  kun の(む)]  12 strokes  飲む のむ "to drink" / 飲み物 のみもの "drink(s)"
+飯  meal, cooked rice  [on ハン  kun めし]  12 strokes  ご飯 ごはん "rice"
+茶  tea  [on チャ,サ  kun -]  9 strokes  茶道 さどう "tea ceremony"
+魚  fish  [on ギョ  kun さかな]  11 strokes  金魚 きんぎょ "gold fish" / 魚 さかな "fish"
+買  buy  [on バイ  kun か(う)]  12 strokes  買う かう "to buy" / 買い物 かいもの "shopping"
+売  sell  [on バイ  kun う(る)]  7 strokes  売る うる "to sell" / 売り場 うりば "sales counter"
+料  fee, material  [on リョウ  kun -]  10 strokes  料理 りょうり "cooking" / 料金 りょうきん "fare"
+理  reason, logic  [on リ  kun -]  11 strokes  料理 りょうり "cooking" / 地理 ちり "geography"
+
+== Describing things (higher) ==
+安  cheap, safe  [on アン  kun やす(い)]  6 strokes  安い やすい "cheap" / 安心 あんしん "(to be) relieved"
+古  old  [on コ  kun ふる(い)]  5 strokes  古い ふるい "old"
+新  new  [on シン  kun あたら(しい),あら(た)]  13 strokes  新しい あたらしい "new" / 新聞 しんぶん "newspaper"
+多  many  [on タ  kun おお(い)]  6 strokes  多い おおい "many" / 多分 たぶん "probably"
+少  few, little  [on ショウ  kun すく(ない),すこ(し)]  4 strokes  少し すこし "a little" / 少ない すくない "few"
+長  long  [on チョウ  kun なが(い)]  8 strokes  社長 しゃちょう "company president" / 長い ながい "long"
+同  same  [on ドウ  kun おな(じ)]  6 strokes  同じ おなじ "the same"
+有  have, exist  [on ユウ,ウ  kun あ(る)]  6 strokes  有名な ゆうめいな "famous" / 有名人 ゆうめいじん "celebrity"
+名  name  [on メイ,ミョウ  kun な]  6 strokes  有名な ゆうめいな "famous" / 有名人 ゆうめいじん "celebrity"
+
+== Colours, flowers and the sea (higher) ==
+黒  black  [on コク  kun くろ(い)]  11 strokes  黒い くろい "black"
+赤  red  [on セキ  kun あか(い)]  7 strokes  赤ちゃん あかちゃん "baby" / 赤十字 せきじゅうじ "Red Cross"
+青  blue, green  [on セイ  kun あお(い)]  8 strokes  青い あおい "blue"
+花  flower  [on カ  kun はな]  7 strokes  花 はな "flower" / 花火 はなび "fireworks"
+海  sea  [on カイ  kun うみ]  9 strokes  海 うみ "sea" / 北海道 ほっかいどう "Hokkaido"
+地  ground  [on チ,ジ  kun -]  6 strokes  地図 ちず "map" / 地理 ちり "geography"
+
+== Body, health and change (higher) ==
+体  body  [on タイ  kun からだ]  7 strokes  体 からだ "body"
+心  heart  [on シン  kun こころ]  4 strokes  中心 ちゅうしん "centre" / 安心 あんしん "(to be) relieved"
+病  illness  [on ビョウ  kun や(む)]  10 strokes  病気 びょうき "ill, illness" / 病院 びょういん "hospital"
+切  cut  [on セツ  kun き(る)]  4 strokes  切る きる "to cut" / 切手 きって "stamps"
+化  change  [on カ,ケ  kun ば(ける)]  4 strokes  化学 かがく "chemistry" / 文化 ぶんか "culture"
+
+== Doing things (higher) ==
+使  use  [on シ  kun つか(う)]  8 strokes  使う つかう "to use" / 大使館 たいしかん "embassy"
+作  make  [on サク,サ  kun つく(る)]  7 strokes  作家 さっか "writer" / 作文 さくぶん "essay"
+住  live, reside  [on ジュウ  kun す(む)]  7 strokes  住む すむ "to live" / 住所 じゅうしょ "address"
+知  know  [on チ  kun し(る)]  8 strokes  知らせる しらせる "to notify" / 知る しる "to know"
+思  think  [on シ  kun おも(う)]  9 strokes  思い出 おもいで "memory" / 思う おもう "to think"
+持  hold, have  [on ジ  kun も(つ)]  9 strokes  持つ もつ "to hold, to carry" / 気持ち きもち "feeling"
+待  wait  [on タイ  kun ま(つ)]  9 strokes  待つ まつ "to wait"
+
+== Going, resting and working (higher) ==
+帰  return  [on キ  kun かえ(る)]  10 strokes  帰る かえる "to go home"
+休  rest  [on キュウ  kun やす(む)]  6 strokes  冬休み ふゆやすみ "winter holiday" / 夏休み なつやすみ "summer holiday" / 春休み はるやすみ "spring holiday"
+働  work  [on ドウ  kun はたら(く)]  13 strokes  働く はたらく "to work"
+動  move  [on ドウ  kun うご(く)]  11 strokes  自動車 じどうしゃ "car" / 動物園 どうぶつえん "zoo"
+泳  swim  [on エイ  kun およ(ぐ)]  8 strokes  水泳 すいえい "swimming" / 泳ぐ およぐ "to swim"
+終  end  [on シュウ  kun お(わる)]  11 strokes  終わり おわり "end" / 終わる おわる "to end"
+旅  trip  [on リョ  kun たび]  10 strokes  旅行 りょこう "travelling" / 旅館 りょかん "Japanese inn"
+
+== Travel and transport (higher) ==
+車  car  [on シャ  kun くるま]  7 strokes  自動車 じどうしゃ "car" / 車 くるま "car"
+電  electricity  [on デン  kun -]  13 strokes  電気 でんき "electricity" / 電話 でんわ "telephone"
+鉄  iron  [on テツ  kun -]  13 strokes  鉄道 てつどう "railway"
+道  road, way  [on ドウ  kun みち]  12 strokes  北海道 ほっかいどう "Hokkaido" / 神道 しんとう "Shinto" / 茶道 さどう "tea ceremony" / 鉄道 てつどう "railway"
+場  venue  [on ジョウ  kun ば]  12 strokes  売り場 うりば "sales counter" / 市場 いちば "market"
+所  location  [on ショ  kun ところ]  8 strokes  住所 じゅうしょ "address" / 所 ところ "place"
+
+== Things, rooms and meetings (higher) ==
+会  meet  [on カイ  kun あ(う)]  6 strokes  会社 かいしゃ "company" / 教会 きょうかい "church" / 都会 とかい "large city"
+事  matter, thing  [on ジ  kun こと]  8 strokes  事 こと "(abstract) thing" / 火事 かじ "(a) fire"
+物  object  [on ブツ,モツ  kun もの]  8 strokes  動物園 どうぶつえん "zoo" / 買い物 かいもの "shopping" / 飲み物 のみもの "drink(s)"
+和  harmony  [on ワ  kun やわ(らぐ)]  8 strokes  和室 わしつ "Japanese style room" / 和食 わしょく "Japanese food"
+室  room  [on シツ  kun -]  9 strokes  和室 わしつ "Japanese style room" / 教室 きょうしつ "classroom"
+庭  courtyard  [on テイ  kun にわ]  9 strokes  庭 にわ "garden" / 校庭 こうてい "school yard"
+真  true  [on シン  kun ま]  10 strokes  写真 しゃしん "photograph, photography" / 真夜中 まよなか "midnight"
+部  section, club  [on ブ  kun -]  11 strokes  部 ぶ "club, department" / 部屋 へや "room"
+間  interval, between  [on カン,ケン  kun あいだ,ま]  12 strokes  中間 ちゅうかん "mid-(term)" / 間 あいだ "in between"
+番  number, turn  [on バン  kun -]  12 strokes  一番 いちばん "number one, first"
+好  like  [on コウ  kun す(き)]  6 strokes  大好きな だいすきな "that which I love" / 好きな すきな "likeable"
+
+200 kanji, 294 words

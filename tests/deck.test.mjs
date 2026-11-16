@@ -5,6 +5,21 @@ import {SETS,SETMAP,KANJI,BY,WORDS,WORD_BY,TYPES,WORD_TYPE,entryOf,CONFMAP,words
 // The 76 Foundation kanji of Pearson Edexcel GCSE (9-1) Japanese, Appendix 4 (Issue 5, October 2022)
 const FOUNDATION=[...'一二七八九十人入三千万下口才山川子女大小上土五六円日月火水木牛犬元今手中天分友四外右左市出生田白本目百気行字耳自先肉年何見言私村町男来金学国県食家校高時'];
 
+// The 124 Higher kanji, same source
+const HIGHER=[...'化午公少心切父文古写冬半母北兄安会休好西寺州多地同毎有名式花近社車住図赤体売作弟雨英画京空事所青知長店東物和使夜泳姉妹映音海前後思持室春秋神待庭風昼南屋茶院夏帰紙書真病勉旅料教強魚黒週雪族都動部理祭終飲晩間場番朝道買飯園漢楽新鉄電働話駅銀語読聞館曜'];
+
+test('the Higher sets hold exactly the 124 Higher kanji, and the deck is all 200',()=>{
+  const got=KANJI.filter(x=>x.tier==='higher').map(x=>x.k);
+  assert.equal(got.length,124);
+  assert.deepEqual([...got].sort(),[...HIGHER].sort());
+  assert.equal(KANJI.length,200);
+  assert.equal(new Set(KANJI.map(x=>x.k)).size,200);
+});
+test('Foundation sets come before Higher sets',()=>{
+  const tiers=SETS.map(s=>s.tier),firstHigher=tiers.indexOf('higher');
+  assert.ok(firstHigher>0);
+  assert.ok(tiers.slice(firstHigher).every(t=>t==='higher'));
+});
 test('the Foundation sets hold exactly the 76 Foundation kanji, each once',()=>{
   const got=KANJI.filter(x=>x.tier==='foundation').map(x=>x.k);
   assert.equal(got.length,76);
@@ -75,7 +90,7 @@ test('card ids find their entry',()=>{
   assert.equal(entryOf('あ|read'),null);
 });
 test('look-alikes are linked',()=>{
-  for(const [a,b] of [['日','目'],['大','犬'],['人','入'],['土','上'],['白','百']])
+  for(const [a,b] of [['休','体'],['語','話'],['持','待'],['買','売'],['日','目'],['大','犬'],['人','入'],['土','上'],['白','百']])
     assert.ok(CONFMAP[a]&&CONFMAP[a].has(b)&&CONFMAP[b].has(a),`${a} should look like ${b}`);
 });
 test('mixKey is the same whichever way round and only for real kanji',()=>{
