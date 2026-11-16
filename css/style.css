@@ -78,7 +78,9 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 .sq::after,.wsq::after,.wcell::after,.pmodel::after{content:"";position:absolute;top:50%;left:0;right:0;border-top:1px dashed var(--guide)}
 .sq .big{position:relative;z-index:1;font-family:var(--kana);font-size:min(38vw,150px);line-height:1;font-weight:400}
 .sq .big.two{font-size:min(26vw,100px);letter-spacing:-.08em} /* きゃ */
-.sq .big.three{font-size:min(19vw,74px);letter-spacing:-.06em} /* かった */
+.sq .big.three{font-size:min(19vw,74px);letter-spacing:-.06em} /* words of up to 3 characters */
+.sq .big.long{font-size:min(11vw,44px);letter-spacing:-.04em;white-space:nowrap} /* 4 or 5 characters: お兄さん */
+.opt.ko.long{font-size:1.45rem}
 /* The two words of a っ pair, tap to hear each one */
 .pairs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 0}
 .pw{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:104px;max-width:100%;text-align:center;padding:8px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}

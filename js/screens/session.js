@@ -75,13 +75,15 @@ function renderCard(){
 }
 
 // ----- Word cards -----
+// Words are 1 to 5 characters, so the big word is sized to fit the square
+const wordSize=w=>[...w.w].length>3?' long':' three';
 // One card per example word. It's either a reading card (see the word, pick how it's read) or, if the word has a voice
 // clip, sometimes a listening card (hear it, pick the written word). The right answer's button has the word as data-k and
 // the wrong ones '~1', '~2'... so grading works as it does for kanji.
 function renderWordCard(id,w){
-  const optBtns=(opts,ko)=>`<div class="opts">${opts.map((o,i)=>`<button class="opt${ko?' ko':''}" data-act="answer" data-k="${o.ok?w.w:'~'+i}">${esc(o.text)}</button>`).join('')}</div>`;
+  const optBtns=(opts,ko)=>`<div class="opts">${opts.map((o,i)=>`<button class="opt${ko?' ko':''}${[...o.text].length>3?' long':''}" data-act="answer" data-k="${o.ok?w.w:'~'+i}">${esc(o.text)}</button>`).join('')}</div>`;
   if(!S.cards[id]&&sess.mode==='review'){
-    app.innerHTML=`${bar()}<div class="stage"><p class="ask">New word</p><div class="sq"><span class="big three">${w.w}</span></div>
+    app.innerHTML=`${bar()}<div class="stage"><p class="ask">New word</p><div class="sq"><span class="big${wordSize(w)}">${w.w}</span></div>
       <p class="reveal">${w.r}</p><p class="rd">${esc(w.e)}</p>${spkBtn(w)}
       <p class="hint">Say it aloud. You'll be tested on this in a moment.</p>
       <button class="primary" data-act="introok">Got it</button></div>`;
@@ -94,7 +96,7 @@ function renderWordCard(id,w){
       ${optBtns(listenOptions(w,S.rows),true)}<button class="link mute" data-act="nosound">Can't use sound right now</button><div class="fb" id="fb"></div></div>`;
     autoSpeak(w,stillHere());
   }else{
-    app.innerHTML=`${bar()}<div class="stage"><p class="ask">How is this read?</p><div class="sq"><span class="big three">${w.w}</span></div>
+    app.innerHTML=`${bar()}<div class="stage"><p class="ask">How is this read?</p><div class="sq"><span class="big${wordSize(w)}">${w.w}</span></div>
       ${optBtns(readingOptions(w,S.rows),false)}${DK}<div class="fb" id="fb"></div></div>`;
   }
 }

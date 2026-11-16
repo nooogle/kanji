@@ -11,6 +11,8 @@ root, out, version = sys.argv[1], sys.argv[2], sys.argv[3]
 files = ['./']
 for d in ['', 'css', 'js', 'js/screens', 'vendor', 'vendor/fonts', 'icons', 'audio']:
     p = os.path.join(root, d)
+    if not os.path.isdir(p):  # audio/ doesn't exist in a fresh clone until the first voice clip is made
+        continue
     for f in sorted(os.listdir(p)):
         full = os.path.join(p, f)
         if os.path.isfile(full) and f.split('.')[-1] in ('html', 'css', 'js', 'mjs', 'mp3', 'png', 'woff2', 'webmanifest') and f != 'sw.js':

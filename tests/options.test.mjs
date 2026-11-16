@@ -34,3 +34,22 @@ test('with only one small set added it fills up from the rest of the deck',()=>{
 test('with no sets added it still gives four options',()=>{
   assert.equal(pickOptions(BY['山'],[]).length,4);
 });
+
+// Words that don't tell two meanings apart
+const STOP=new Set(['be','to','the','of','a']);
+const words=m=>m.toLowerCase().split(/[^a-z]+/).filter(w=>w&&!STOP.has(w));
+test('no wrong answer shares a word with the right meaning (店 "shop" is never shown beside 屋 "roof, shop")',()=>{
+  for(const x of KANJI){
+    for(let i=0;i<5;i++){
+      const o=pickOptions(x,ALL,seeded());
+      for(const y of o)if(y!==x)assert.ok(!words(y.m).some(w=>words(x.m).includes(w)),`${x.k} "${x.m}" was offered with ${y.k} "${y.m}"`);
+    }
+  }
+});
+test('店 and 屋 are never offered together, even when only their set is added',()=>{
+  const sets=[BY['店'].set];
+  for(let i=0;i<30;i++){
+    const ks=pickOptions(BY['店'],sets).map(y=>y.k);
+    assert.ok(!ks.includes('屋'));
+  }
+});

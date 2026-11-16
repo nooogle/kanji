@@ -24,7 +24,9 @@ export function toast(msg){const t=document.createElement('div');t.className='to
 export function level(it){
   if(!S.rows.includes(it.set))return -1;
   // Score only the card types being practised (in manual mode, the ticked ones), scaled so "solid" is still reachable
-  const ts=isManual()?manualTypes():S.settings.write===false?['read','recall']:TYPES;
+  // (word cards belong to words, not kanji, so they never count here; if only Word reading is ticked, use all three kanji types)
+  const ticked=isManual()?manualTypes().filter(t=>TYPES.includes(t)):null;
+  const ts=ticked?(ticked.length?ticked:TYPES):S.settings.write===false?['read','recall']:TYPES;
   const avg=ts.reduce((a,t)=>a+cardScore(it.k+'|'+t),0)/ts.length;
   return avg<1.5?1:avg<2.5?2:avg<3.5?3:4;
 }
