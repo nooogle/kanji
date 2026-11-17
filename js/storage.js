@@ -17,7 +17,6 @@ function load(){
 export function save(){try{localStorage.setItem(STORE,JSON.stringify(S));}catch(e){}}
 
 export let S=load();
-delete S.settings.target; // the test-date setting (and its deadline mode) has been removed
 
 /** Swap in a whole new progress object (restoring a backup, or resetting) and save it. */
 export function replaceState(next){S=next;save();}

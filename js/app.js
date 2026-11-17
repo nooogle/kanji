@@ -15,7 +15,7 @@ import {needsWelcome,renderWelcome,welcomeNext,finishWelcome,install} from './we
 import {editHint,setHint} from './hints.js';
 import {renderHome} from './screens/home.js';
 import {renderReport,reportText,copyText} from './screens/report.js';
-import {startSession,answer,next,introOk,noSound,clearDrawing,checkWriting,dontKnowWriting,selfGrade,retryWriting,replayStrokes,practiseWriting,nextStep,showPractised,pWatch,pNext,pDone} from './screens/session.js';
+import {startSession,answer,next,introOk,noSound,clearDrawing,checkWriting,dontKnowWriting,selfGrade,retryWriting,replayStrokes} from './screens/session.js';
 import './keys.js'; // keyboard shortcuts for computers (sets itself up when loaded)
 
 document.addEventListener('click',e=>{
@@ -67,13 +67,7 @@ document.addEventListener('click',e=>{
     case 'wdk':dontKnowWriting();break;
     case 'self':selfGrade(b.dataset.ok==='1');break;
     case 'strokes':replayStrokes();break;
-    case 'practise':practiseWriting();break;
     case 'retry':retryWriting();break;
-    case 'wstep':nextStep();break;
-    case 'wshow':showPractised();break;
-    case 'pwatch':pWatch();break;
-    case 'pnext':pNext();break;
-    case 'pdone':pDone();break;
     // Hints
     case 'edithint':editHint(b.dataset.k,b.closest('.hintkeys')?BY[b.dataset.k].set:null);break; // from the chart? go back there after
     case 'savehint':setHint(b.dataset.k,document.getElementById('hinttext').value.trim());break;
@@ -89,7 +83,7 @@ document.addEventListener('click',e=>{
       try{const {state:s,error}=checkBackup(JSON.parse(txt));
         if(error){toast(error);break;}
         if(confirm('Replace the progress on this phone with this backup?')){
-          const restored=Object.assign(fresh(),s);if(!s.v)restored.v=1; // backups from before FSRS get converted
+          const restored=Object.assign(fresh(),s);
           replaceState(restored);closeSheet();renderHome();toast('Backup restored');}
       }catch(err){toast('That backup could not be read');}
       break;}
@@ -114,7 +108,6 @@ document.addEventListener('change',e=>{
     if(!ticked.length){e.target.checked=true;toast('Tick at least one');return;}
     S.settings.types=ticked;save();renderHome();
   }
-  if(e.target.name==='wpmode'){S.settings.practise=e.target.value;save();}
   if(e.target.id==='voice'){S.settings.voice=e.target.value;save();speakWord(WORD_BY['山']);}
 });
 
