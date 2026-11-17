@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import {KANJI} from '../js/deck.js';
 import {STROKES,strokeCount,strokesSVG,stepSVG} from '../js/strokes.js';
 
-// KanjiVG draws a few kanji with a different form from the Pearson list's stroke count. One is known: 庭.
-const KNOWN_DIFFERENT={'庭':'the spec lists 9 strokes; the standard form (and KanjiVG) has 10'};
+// KanjiVG can draw a kanji with a different form from the deck's stroke count; list any such here (none at present).
+const KNOWN_DIFFERENT={};
 
 test('every kanji in the deck has stroke data',()=>{
   const missing=KANJI.map(x=>x.k).filter(ch=>!(STROKES[ch]&&STROKES[ch].s.length>=1&&STROKES[ch].s.length===STROKES[ch].n.length));

@@ -52,3 +52,11 @@ test('canListen is false for a word with no voice clip yet',()=>{
   assert.equal(canListen({w:'山',r:'やま',a:null}),false);
   assert.equal(canListen({w:'山',r:'やま',a:'w-yama'}),true);
 });
+
+test('a wrong reading is never a valid reading of one of the word’s kanji (し for 四)',()=>{
+  const four=WORDS.find(w=>w.w==='四');
+  for(let i=0;i<200;i++){
+    const bad=readingOptions(four,SETS.map(s=>s.id)).filter(o=>!o.ok).map(o=>o.text);
+    assert.ok(!bad.includes('し')&&!bad.includes('よ'),bad.join());
+  }
+});

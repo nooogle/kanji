@@ -1,7 +1,16 @@
 // The four answers on a word card: for a reading card, readings in kana; for a listening card, written words.
 // Pure code (no screen or storage), so it can be tested.
 
-import {WORDS,wordsOf} from './deck.js';
+import {WORDS,wordsOf,BY} from './deck.js';
+
+const hira=t=>t.replace(/[\u30a1-\u30f6]/g,c=>String.fromCharCode(c.charCodeAt(0)-96));
+/** Every reading a kanji can have, in hiragana (on readings converted, okurigana with and without its tail). */
+function readingsOf(k){
+  const e=BY[k],out=new Set();
+  for(const r of e.on)out.add(hira(r));
+  for(const r of e.kun){out.add(r.replace(/[()]/g,''));out.add(r.replace(/\(.*\)/,''));}
+  return out;
+}
 
 function shuffled(a,rand){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
@@ -15,6 +24,8 @@ function wrongWords(word,setIds,rand){
     WORDS,
   ];
   const out=[],reads=new Set([word.r]);
+  // a wrong answer must not be a perfectly good reading of one of this word's kanji (し for 四)
+  for(const k of word.k)for(const r of readingsOf(k))reads.add(r);
   for(const tier of tiers){
     // within a tier, random order, but words of a similar length first
     const order=shuffled(tier,rand).sort((a,b)=>Math.min(2,Math.abs(a.r.length-word.r.length))-Math.min(2,Math.abs(b.r.length-word.r.length)));
