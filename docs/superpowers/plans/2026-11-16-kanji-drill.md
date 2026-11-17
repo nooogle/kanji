@@ -37,7 +37,7 @@
 ## File structure
 
 - Keep (renamed/edited): `index.html`, `css/style.css`, `manifest.webmanifest`, `sw.js`, `icons/`, `how-it-works.html`, `how-the-voice-was-made.html`, `README.md`, `CLAUDE.md`, `js/{app,storage,backup,scheduler,queues,sound,hints,hintdata,keys,welcome,tips,sheets,ui,drawing,strokes}.js`, `js/screens/{home,session,report}.js`, `tools/*`, `tests/*`.
-- New `js/kanjidata.js`: pure data only (SETS, per-kanji meanings/readings, WORDS). The thing Jon and Jake check.
+- New `js/kanjidata.js`: pure data only (SETS, per-kanji meanings/readings, WORDS). The thing the owners check.
 - Replace `js/deck.js`: builds KANJI, WORDS, lookups from the data.
 - New `js/words.js`: pure functions picking answer options for word cards.
 - New `tools/review_sheet.mjs`: prints the deck as a readable table for checking.
